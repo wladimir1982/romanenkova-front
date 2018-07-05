@@ -1,4 +1,5 @@
 .container {
+  display: -ms-grid;
   display: grid;
   grid-template-rows: 525px auto 528px;
   min-height: 100%;
