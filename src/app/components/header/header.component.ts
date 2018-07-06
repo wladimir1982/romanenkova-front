@@ -1,14 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 
-export interface iNavigationItem {
+export interface INavigationItem {
   name: string | Array<string>;
   anchor: string;
   href?: string;
 }
 
-export interface iNavigationUrl {
+export interface INavigationUrl {
   anchor: string;
   href?: string;
 }
@@ -21,34 +21,36 @@ export interface iNavigationUrl {
 export class HeaderComponent implements OnInit {
   @Input() src: string;
 
-  public navItems: Array<iNavigationItem>;
+  public navItems: Array<INavigationItem>;
   public title: Array<string>;
-  public navigationUrls: Array<iNavigationUrl> = [
-    {href: "/", anchor: "main"},
-    {href: "/about", anchor: "about"},
-    {href: "/services", anchor: "services"},
-    {href: "/diplomas", anchor: "diplomas"},
-    {href: "/articles", anchor: "articles"},
-    {href: "/contacts", anchor: "contacts"}
+  public navigationUrls: Array<INavigationUrl> = [
+    {href: '/', anchor: 'main'},
+    {href: '/about', anchor: 'about'},
+    {href: '/services', anchor: 'services'},
+    {href: '/diplomas', anchor: 'diplomas'},
+    {href: '/articles', anchor: 'articles'},
+    {href: '/contacts', anchor: 'contacts'}
   ];
 
   constructor(private httpClient: HttpClient) {
   }
 
   ngOnInit() {
-    this.httpClient.get<Array<iNavigationItem>>(environment.api + 'interface', {params: {lang: 'en', id: 'nav'}})
-      .subscribe((data: Array<iNavigationItem>) => {
+    this.httpClient.get<Array<INavigationItem>>(environment.api + 'interface', {params: {lang: 'ru', id: 'nav'}})
+      .subscribe((data: Array<INavigationItem>) => {
         this.title = (data[0].name as string).split(' ');
-        const rawNav = data;
-        rawNav.splice(0, 1);
-        this.navigationUrls.forEach((navUrl: iNavigationUrl) => {
-          const navItem = rawNav.find((item: iNavigationItem) => item.anchor === navUrl.anchor);
+        data.splice(0, 1);
+        this.navigationUrls.forEach((navUrl: INavigationUrl) => {
+          const navItem = data.find((item: INavigationItem) => item.anchor === navUrl.anchor);
 
           if (navItem) {
             navItem.href = navUrl.href;
           }
         });
-        this.navItems = rawNav;
-      })
+        this.navItems = data;
+
+        console.log(this.title);
+        console.log(this.navItems);
+      });
   }
 }

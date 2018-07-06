@@ -15,6 +15,15 @@ html, body {
   font-weight: 400;
   color: $color-text-regular;
 
+  a {
+    color: $color-text-regular;
+  }
+
+  h1, h2, h3, h4 {
+    margin: 0;
+    padding: 0;
+  }
+
   h1 {
     font-size: 52px;
     line-height: 60px;
