@@ -7,7 +7,7 @@ import { AboutComponent } from './components/about/about.component';
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {path: '**', component: AboutComponent}
+      {path: '', component: AboutComponent}
     ])
   ],
   declarations: [AboutComponent]

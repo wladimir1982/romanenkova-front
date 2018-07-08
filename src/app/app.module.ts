@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AttendButtonComponent } from './components/attend-button/attend-button.component';
 import {HttpClientModule} from "@angular/common/http";
+import {IndexModule} from "./pages/index/index.module";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    IndexModule
   ],
   providers: [],
   bootstrap: [AppComponent]
