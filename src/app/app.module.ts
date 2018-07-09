@@ -3,26 +3,20 @@ import { NgModule } from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { ContactsComponent } from './components/contacts/contacts.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { AttendButtonComponent } from './components/attend-button/attend-button.component';
-import {HttpClientModule} from "@angular/common/http";
-import {IndexModule} from "./pages/index/index.module";
+import {HttpClientModule} from '@angular/common/http';
+import {IndexModule} from './pages/_index/index.module';
+import {Page404Module} from './pages/_page404/page404.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ContactsComponent,
-    HeaderComponent,
-    FooterComponent,
-    AttendButtonComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    IndexModule
+    IndexModule,
+    Page404Module
   ],
   providers: [],
   bootstrap: [AppComponent]

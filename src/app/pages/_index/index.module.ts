@@ -1,18 +1,32 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IndexComponent } from './components/index/index.component';
-import {RouterModule} from "@angular/router";
+import {RouterModule} from '@angular/router';
 import { MainComponent } from './components/main/main.component';
+import {AboutModule} from '../about/about.module';
+import {ArticleModule} from '../article/article.module';
+import {ArticlesModule} from '../articles/articles.module';
+import {DiplomasModule} from '../diplomas/diplomas.module';
+import {ServicesModule} from '../services/services.module';
+import {FooterComponent} from './components/footer/footer.component';
+import {HeaderComponent} from './components/header/header.component';
+import {ContactsComponent} from './components/contacts/contacts.component';
+import {AttendButtonComponent} from './components/attend-button/attend-button.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    AboutModule,
+    ArticleModule,
+    ArticlesModule,
+    DiplomasModule,
+    ServicesModule,
     RouterModule.forChild([
       {
         path: 'about',
         loadChildren: './../about/about.module#AboutModule',
         outlet: 'contents'
-      },/*,
+      }, /*,
       {
         path: 'articles',
         loadChildren: './../articles/articles.module#ArticlesModule'
@@ -35,7 +49,7 @@ import { MainComponent } from './components/main/main.component';
       // {path: '**', component: Page404Component}
     ])
   ],
-  declarations: [IndexComponent, MainComponent],
-  exports: [IndexComponent]
+  declarations: [IndexComponent, MainComponent, FooterComponent, HeaderComponent, ContactsComponent, AttendButtonComponent],
+  exports: []
 })
 export class IndexModule { }
