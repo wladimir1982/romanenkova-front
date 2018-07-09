@@ -11,15 +11,15 @@ export class AppComponent {
   public src: string;
 
   constructor(private router: Router) {
-    this.router.events
-      .pipe(filter((e: RouterEvent) => e instanceof NavigationEnd))
-      .subscribe((e: NavigationEnd): void => {
-        if (e.urlAfterRedirects === '/') {
-          this.src = 'assets/header-main.png';
-        } else {
-          this.src = 'assets/header-common.png';
-        }
-      });
+    // this.router.events
+    //   .pipe(filter((e: RouterEvent) => e instanceof NavigationEnd))
+    //   .subscribe((e: NavigationEnd): void => {
+    //     if (e.urlAfterRedirects === '/') {
+    //       this.src = 'assets/header-main.png';
+    //     } else {
+    //       this.src = 'assets/header-common.png';
+    //     }
+    //   });
   }
   title = 'app';
 }

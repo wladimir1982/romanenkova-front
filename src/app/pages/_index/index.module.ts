@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { IndexComponent } from './components/index/index.component';
 import {RouterModule} from "@angular/router";
 import { MainComponent } from './components/main/main.component';
+import {FooterComponent} from "./components/footer/footer.component";
+import {HeaderComponent} from "./components/header/header.component";
+import {ContactsComponent} from "./components/contacts/contacts.component";
+import {AttendButtonComponent} from "./components/attend-button/attend-button.component";
 
 @NgModule({
   imports: [
@@ -35,7 +39,7 @@ import { MainComponent } from './components/main/main.component';
       // {path: '**', component: Page404Component}
     ])
   ],
-  declarations: [IndexComponent, MainComponent],
+  declarations: [IndexComponent, MainComponent, FooterComponent, HeaderComponent, ContactsComponent, AttendButtonComponent],
   exports: [IndexComponent]
 })
 export class IndexModule { }
