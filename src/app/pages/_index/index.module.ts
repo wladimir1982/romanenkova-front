@@ -7,6 +7,7 @@ import {FooterComponent} from "./components/footer/footer.component";
 import {HeaderComponent} from "./components/header/header.component";
 import {ContactsComponent} from "./components/contacts/contacts.component";
 import {AttendButtonComponent} from "./components/attend-button/attend-button.component";
+import {ResolveMainService} from "../../resolve-main.service";
 
 @NgModule({
   imports: [
@@ -35,7 +36,7 @@ import {AttendButtonComponent} from "./components/attend-button/attend-button.co
       },
       { path: '',  pathMatch: 'full'},
       { path: '**', redirectTo: '/en', pathMatch: 'full'}*/
-      {path: '**', component: MainComponent, outlet: 'contents'},
+      {path: '', component: MainComponent, outlet: 'contents', resolve: {pageData: ResolveMainService}},
       // {path: '**', component: Page404Component}
     ])
   ],
