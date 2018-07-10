@@ -22,11 +22,34 @@
       display: block;
       margin-left: 50px;
       align-self: center;
+      text-transform: uppercase;
     }
   }
 
   .navigation {
     align-self: center;
+    text-transform: uppercase;
+
+    &-list {
+      list-style: none;
+      display: flex;
+
+      &-item {
+        margin-right: 15px;
+
+        .text {
+          &, &:hover, &:focus, &:visited {
+            text-decoration: none;
+          }
+        }
+
+        font-weight: bold;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
   }
 
   .social {
@@ -35,7 +58,7 @@
   }
 
   &.nav-wrapper {
-    position: sticky;
+    position: fixed;
     top: 0;
     grid-row: top;
     grid-column: left / span 3;

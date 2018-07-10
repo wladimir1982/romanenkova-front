@@ -1,12 +1,20 @@
 <div class="header-block-wrapper" [ngStyle]="{'background-image': 'url(' + src + ')'}">
   <div class="header-block nav-wrapper">
-    <!--<a class="link-root" href="/" *ngIf="title">-->
-      <!--<h4>-->
-        <!--<span class="accent">{{title[0]?.toUpperCase()}} </span>-->
-        <!--<span>{{title[1]?.toUpperCase()}}</span>-->
-      <!--</h4>-->
-    <!--</a>-->
-    <nav class="navigation">navigation</nav>
+    <a class="link-root" href="/" *ngIf="title">
+      <h4>
+        <span class="accent">{{title[0]?.toUpperCase()}} </span>
+        <span>{{title[1]?.toUpperCase()}}</span>
+      </h4>
+    </a>
+    <nav class="navigation">
+      <ul class="navigation-list">
+        <li class="navigation-list-item" *ngFor="let navItem of nav">
+          <a class="text" [routerLink]="navItem.href" routerLinkActive="accent">
+            {{navItem.name}}
+          </a>
+        </li>
+      </ul>
+    </nav>
     <span class="social">social, language</span>
   </div>
   <div class="header-block header-wrapper">header</div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from "@angular/router";
-import {INavigationItem} from "../../../../interfaces/iNavigation";
-import {filter} from "rxjs/internal/operators";
+import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from '@angular/router';
+import {INavigationItem} from '../../../../interfaces/iNavigation';
+import {filter} from 'rxjs/internal/operators';
 
 @Component({
   selector: 'app-index',
@@ -16,19 +16,10 @@ export class IndexComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    console.log('some data', this.route.snapshot.data);
-    this.title = this.route.snapshot.data.title;
-    this.nav = this.route.snapshot.data.navigation;
-
-    //todo: bring back to app component
-    this.router.events
-      .pipe(filter((e: RouterEvent) => e instanceof NavigationEnd))
-      .subscribe((e: NavigationEnd): void => {
-        if (e.urlAfterRedirects === '/') {
-          this.src = 'assets/header-main.png';
-        } else {
-          this.src = 'assets/header-common.png';
-        }
-      });
+    // todo: perform more clear way to receive data
+    console.log('resolve data for index', this.route.snapshot['_resolvedData'].data.isRoot);
+    this.title = this.route.snapshot['_resolvedData'].data.title;
+    this.nav = this.route.snapshot['_resolvedData'].data.navigation;
+    this.src = this.route.snapshot['_resolvedData'].data.isRoot ? 'assets/header-main.png' : 'assets/header-common.png';
   }
 }
