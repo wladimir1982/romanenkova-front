@@ -1,3 +1,5 @@
+@import './../../../../../app/styles/_variables';
+
 .header-block {
   height: 120px;
   width: 100%;
@@ -37,10 +39,25 @@
       &-item {
         margin-right: 15px;
 
-        .text {
+        &-text {
+          color: $color-text-accent;
+          transition: .3s color ease;
+
           &, &:hover, &:focus, &:visited {
             text-decoration: none;
           }
+
+
+          &:hover {
+            color: $color-text-regular;
+            transition: .3s color ease;
+          }
+        }
+
+        &.active {
+          color: $color-text-regular;
+          transition: .3s color ease;
+          border-bottom: 1px solid $color-text-regular;
         }
 
         font-weight: bold;

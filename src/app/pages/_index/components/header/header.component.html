@@ -9,7 +9,7 @@
     <nav class="navigation">
       <ul class="navigation-list">
         <li class="navigation-list-item" *ngFor="let navItem of nav">
-          <a class="text" [routerLink]="navItem.href" routerLinkActive="accent">
+          <a class="navigation-list-item-text" [routerLink]="navItem.href" routerLinkActive="active">
             {{navItem.name}}
           </a>
         </li>
