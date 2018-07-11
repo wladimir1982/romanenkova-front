@@ -1,6 +1,6 @@
 <div class="header-block-wrapper" [ngStyle]="{'background-image': 'url(' + src + ')'}">
   <div class="header-block nav-wrapper">
-    <a class="link-root" href="/" *ngIf="title">
+    <a class="link-root" routerLink="" *ngIf="title">
       <h4>
         <span class="accent">{{title[0]?.toUpperCase()}} </span>
         <span>{{title[1]?.toUpperCase()}}</span>

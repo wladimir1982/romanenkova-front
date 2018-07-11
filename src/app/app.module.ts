@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import {HttpClientModule} from "@angular/common/http";
-import {IndexModule} from "./pages/_index/index.module";
+import {HttpClientModule} from '@angular/common/http';
+import {IndexModule} from './pages/_index/index.module';
 
 @NgModule({
   declarations: [

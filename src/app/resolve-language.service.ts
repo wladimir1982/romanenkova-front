@@ -10,5 +10,5 @@ export class ResolveLanguageService implements Resolve<string> {
     return route.params.lang;
   }
 
-  constructor(private httpClient: HttpClient, private route: Router) { }
+  constructor() { }
 }

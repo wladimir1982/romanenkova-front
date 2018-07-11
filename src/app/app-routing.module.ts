@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {ResolveIndexService} from './pages/_index/services/resolve-index.service';
+import {ResolveHeaderService} from './pages/_index/services/resolve-header.service';
 import {IndexComponent} from './pages/_index/components/index/index.component';
 import {ResolveLanguageService} from './resolve-language.service';
 import {LanguageGuardService} from './language-guard.service';
@@ -10,7 +10,14 @@ const routes: Routes = [
     path: ':lang',
     loadChildren: './pages/_index/index.module#IndexModule',
     canActivate: [LanguageGuardService],
-    resolve: {data: ResolveIndexService, language: ResolveLanguageService},
+    resolve: {data: ResolveHeaderService, language: ResolveLanguageService},
+    component: IndexComponent,
+    outlet: 'primary'
+  }, {
+    path: ':lang/**',
+    loadChildren: './pages/_index/index.module#IndexModule',
+    canActivate: [LanguageGuardService],
+    resolve: {data: ResolveHeaderService, language: ResolveLanguageService},
     component: IndexComponent,
     outlet: 'primary'
   }, {
@@ -19,7 +26,7 @@ const routes: Routes = [
     outlet: 'primary'
   },
   {path: '', component: IndexComponent, outlet: 'primary', canActivate: [LanguageGuardService]},
-  {path: '**', redirectTo: '404', pathMatch: 'full'}
+  // {path: '**', redirectTo: '404', pathMatch: 'full'}
 ];
 
 @NgModule({

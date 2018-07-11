@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { ResolveMainService } from './resolve-main.service';
+import { ResolvePageService } from './resolve-page.service';
 
 describe('ResolveMainService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ResolveMainService]
+      providers: [ResolvePageService]
     });
   });
 
-  it('should be created', inject([ResolveMainService], (service: ResolveMainService) => {
+  it('should be created', inject([ResolvePageService], (service: ResolvePageService) => {
     expect(service).toBeTruthy();
   }));
 });

@@ -9,14 +9,14 @@ import {INavigationItem, INavigationUrl} from '../../../interfaces/iNavigation';
 @Injectable({
   providedIn: 'root'
 })
-export class ResolveIndexService {
+export class ResolveHeaderService {
   private navigationUrls: Array<INavigationUrl> = [
-    {href: '/', anchor: 'main'},
-    {href: '/about', anchor: 'about'},
-    {href: '/services', anchor: 'services'},
-    {href: '/diplomas', anchor: 'diplomas'},
-    {href: '/articles', anchor: 'articles'},
-    {href: '/contacts', anchor: 'contacts'}
+    {href: '', anchor: 'main'},
+    {href: 'about', anchor: 'about'},
+    {href: 'services', anchor: 'services'},
+    {href: 'diplomas', anchor: 'diplomas'},
+    {href: 'articles', anchor: 'articles'},
+    {href: '#contacts', anchor: 'contacts'}
   ];
 
   resolve(route: ActivatedRouteSnapshot): Observable<{ title: Array<string>, navigation: Array<INavigationItem> }> {
