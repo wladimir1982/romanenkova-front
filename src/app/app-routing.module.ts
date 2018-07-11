@@ -26,7 +26,7 @@ const routes: Routes = [
     outlet: 'primary'
   },
   {path: '', component: IndexComponent, outlet: 'primary', canActivate: [LanguageGuardService]},
-  // {path: '**', redirectTo: '404', pathMatch: 'full'}
+  {path: '**', redirectTo: '404', pathMatch: 'full', outlet: 'primary'}
 ];
 
 @NgModule({

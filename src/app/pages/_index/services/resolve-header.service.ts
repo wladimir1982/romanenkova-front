@@ -19,12 +19,13 @@ export class ResolveHeaderService {
     {href: '#contacts', anchor: 'contacts'}
   ];
 
-  resolve(route: ActivatedRouteSnapshot): Observable<{ title: Array<string>, navigation: Array<INavigationItem> }> {
+  resolve(route: ActivatedRouteSnapshot): Observable<{ title: Array<string>, navigation: Array<INavigationItem>, buttonText: string }> {
     return this.httpClient.get<Array<INavigationItem>>(environment.api + 'interface', {params: {lang: route.params.lang, id: 'nav'}})
       .pipe(map((data: Array<INavigationItem>) => {
         const title: Array<string> = (data[0].name as string).split(' ');
+        const buttonText: string = data[1].name as string;
 
-        data.splice(0, 1);
+        data.splice(0, 2);
 
         this.navigationUrls.forEach((navUrl: INavigationUrl) => {
           const navItem = data.find((item: INavigationItem) => item.anchor === navUrl.anchor);
@@ -34,7 +35,7 @@ export class ResolveHeaderService {
           }
         });
 
-        return {title, navigation: data, isRoot: true};
+        return {title, navigation: data, isRoot: true, buttonText};
       }));
   }
 

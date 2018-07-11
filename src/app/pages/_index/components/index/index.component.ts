@@ -14,6 +14,7 @@ export class IndexComponent implements OnInit {
   public nav: Array<INavigationItem>;
   public src: string;
   public header: string;
+  public attend: string;
 
   constructor(private route: ActivatedRoute, private router: Router) {
     router.events
@@ -28,5 +29,6 @@ export class IndexComponent implements OnInit {
     // todo: perform more clear way to receive data
     this.title = this.route.snapshot['_resolvedData'].data.title;
     this.nav = this.route.snapshot['_resolvedData'].data.navigation;
+    this.attend = this.route.snapshot['_resolvedData'].data.buttonText;
   }
 }

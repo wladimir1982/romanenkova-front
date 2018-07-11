@@ -1,5 +1,13 @@
 @import './../../../../../app/styles/_variables';
 
+@mixin transHeader() {
+  transition: .3s all ease;
+}
+
+@mixin transBottomLine($duration) {
+  transition: $duration width cubic-bezier(.84, -.36, .13, 1.13);
+}
+
 .header-block {
   &-wrapper {
     display: grid;
@@ -39,10 +47,34 @@
   justify-content: space-between;
   height: 120px;
   width: 100%;
+  z-index: 10;
+  @include transHeader();
+
+  .bottom-line {
+    position: absolute;
+    height: 1px;
+    background-color: #000000;
+    bottom: 0;
+    width: 0;
+    transform: translateX(-50%);
+    left: 50%;
+    @include transBottomLine(.3s);
+  }
+
+  &.fixed {
+    height: 50px;
+    background-color: #ffffff;
+    @include transHeader();
+
+    .bottom-line {
+      width: 100%;
+      @include transBottomLine(1s);
+    }
+  }
 
   .link-root {
     display: block;
-    margin-left: 50px;
+    margin-left: 100px;
     align-self: center;
     text-transform: uppercase;
     flex-basis: 0;
@@ -89,8 +121,6 @@
           }
         }
 
-
-
         font-weight: bold;
 
         &:last-child {
@@ -100,10 +130,66 @@
     }
   }
 
-  .social {
-    align-self: center;
-    margin-right: 50px;
+  .right-side {
     flex-basis: 0;
     flex-grow: 1;
+    display: flex;
+    margin-right: 100px;
+  }
+
+  .social {
+    flex-basis: 0;
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+
+    &-icon {
+      font-size: 1.5rem;
+      margin-right: 20px;
+      align-self: center;
+
+      &, &:hover, &:focus, &:visited {
+        text-decoration: none;
+      }
+
+      &:last-child {
+        margin-right: 75px;
+      }
+    }
+  }
+
+  .language-selector {
+    align-self: center;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    text-transform: uppercase;
+    transition: .3s color ease;
+
+    .language-list {
+      list-style: none;
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      padding: 0;
+      margin: 0;
+      z-index: 21;
+      border: 1px solid #000;
+
+      &-item {
+        padding: 15px 15px 0;
+        background-color: #ffffff;
+        white-space: nowrap;
+
+        &:last-child {
+          padding-bottom: 15px;
+        }
+
+        &:hover {
+          color: $color-text-accent;
+          transition: .3s color ease;
+        }
+      }
+    }
   }
 }

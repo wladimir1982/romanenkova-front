@@ -17,10 +17,15 @@ export class LanguageGuardService implements CanActivate {
       return of(true);
     }
 
+    if (route.params.lang === '404') {
+      return of(false);
+    }
+
     if (storedLang) {
       this.route.navigate([storedLang]);
       return of(false);
     }
+
 
     return this.httpClient.get<{ lang: string }>(environment.api + 'language')
       .pipe(
