@@ -1,28 +1,28 @@
+<div class="nav-wrapper">
+  <a class="link-root" routerLink="" *ngIf="title">
+    <h4>
+      <span class="accent">{{title[0]?.toUpperCase()}} </span>
+      <span>{{title[1]?.toUpperCase()}}</span>
+    </h4>
+  </a>
+  <nav class="navigation">
+    <ul class="navigation-list">
+      <li class="navigation-list-item" *ngFor="let navItem of nav">
+        <a class="navigation-list-item-text" [routerLink]="navItem.href" routerLinkActive="active">
+          {{navItem.name}}
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <span class="social">social, language</span>
+</div>
 <div class="header-block-wrapper" [ngStyle]="{'background-image': 'url(' + src + ')'}">
-  <div class="header-block nav-wrapper">
-    <a class="link-root" routerLink="" *ngIf="title">
-      <h4>
-        <span class="accent">{{title[0]?.toUpperCase()}} </span>
-        <span>{{title[1]?.toUpperCase()}}</span>
-      </h4>
-    </a>
-    <nav class="navigation">
-      <ul class="navigation-list">
-        <li class="navigation-list-item" *ngFor="let navItem of nav">
-          <a class="navigation-list-item-text" [routerLink]="navItem.href" routerLinkActive="active">
-            {{navItem.name}}
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <span class="social">social, language</span>
+  <h1 class="page-header">
+    {{header}}
+  </h1>
+  <div class="header-block button-wrapper">
+    <span class="button">
+      <app-attend-button [text]="attend"></app-attend-button>
+    </span>
   </div>
-  <div class="header-block header-wrapper">
-    <div class="page-header">
-      <h1 class="page-header-text">
-        {{header}}
-      </h1>
-    </div>
-  </div>
-  <div class="header-block button-wrapper">button</div>
 </div>

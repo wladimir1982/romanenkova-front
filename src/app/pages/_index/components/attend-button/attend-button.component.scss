@@ -1,0 +1,40 @@
+@import './../../../../../app/styles/_variables';
+
+.attend-button {
+  height: 70px;
+  background-color: #fff;
+  border: none;
+  text-transform: uppercase;
+  min-width: 280px;
+  font-weight: bold;
+  padding: 0 50px;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  position: relative;
+  transform: perspective(1px) translateZ(0);
+  transition: color .3s ease;
+  font-size: 1rem;
+
+  &:before {
+    content: '';
+    background-color: $color-text-accent;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 100%;
+    bottom: 0;
+    z-index: -1;
+    transition: right .3s cubic-bezier(.84, -.36, .13, 1.13);
+  }
+
+  &:hover {
+    color: $color-text-regular;
+    transition: color .3s ease;
+
+    &:before {
+      right: 0;
+      transition: right .3s cubic-bezier(.84, -.36, .13, 1.13);
+    }
+  }
+}

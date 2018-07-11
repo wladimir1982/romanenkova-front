@@ -9,6 +9,7 @@ import {INavigationItem} from '../../../../interfaces/iNavigation';
 export class HeaderComponent implements OnInit {
   @Input() src: string;
   @Input() header: string;
+  @Input() attend: string;
   @Input() title: Array<string>;
   @Input() nav: Array<INavigationItem>;
 

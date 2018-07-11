@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-attend-button',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./attend-button.component.scss']
 })
 export class AttendButtonComponent implements OnInit {
+  @Input() public text: string;
 
   constructor() { }
 
