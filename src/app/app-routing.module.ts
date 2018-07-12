@@ -4,13 +4,14 @@ import {ResolveHeaderService} from './pages/_index/services/resolve-header.servi
 import {IndexComponent} from './pages/_index/components/index/index.component';
 import {ResolveLanguageService} from './resolve-language.service';
 import {LanguageGuardService} from './language-guard.service';
+import {ResolveFooterService} from "./pages/_index/services/resolve-footer.service";
 
 const routes: Routes = [
   {
     path: ':lang',
     loadChildren: './pages/_index/index.module#IndexModule',
     canActivate: [LanguageGuardService],
-    resolve: {data: ResolveHeaderService, language: ResolveLanguageService},
+    resolve: {headerData: ResolveHeaderService, language: ResolveLanguageService, footerData: ResolveFooterService},
     component: IndexComponent,
     outlet: 'primary'
   }, /*{

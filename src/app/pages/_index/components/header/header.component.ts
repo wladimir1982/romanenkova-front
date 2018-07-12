@@ -2,7 +2,7 @@ import {Component, HostListener, Inject, Input, OnInit} from '@angular/core';
 import {INavigationItem} from '../../../../interfaces/iNavigation';
 import {DOCUMENT} from '@angular/common';
 import {ILangItem} from '../../../../interfaces/iLangItem';
-import {ActivatedRoute, ActivationEnd, NavigationEnd, Router, RouterEvent} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from '@angular/router';
 import {filter} from 'rxjs/internal/operators';
 
 @Component({
@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit {
     {code: 'ru', name: 'Рус'},
     {code: 'uk', name: 'Укр'}
   ];
-  private canReload: boolean = false;
 
   @Input() src: string;
   @Input() header: string;
@@ -42,24 +41,11 @@ export class HeaderComponent implements OnInit {
           lang.href = this.router.url.replace(/^\/(en|ru|uk)?(\/)/gmi, `/${lang.code}/`);
         });
       });
-
-    router.events
-      .pipe(filter((e: RouterEvent) => e instanceof ActivationEnd))
-      .subscribe(d => {
-        if (this.canReload) {
-          window.location.reload();
-        }
-      });
   }
 
   ngOnInit() {
     const currentLang: string = localStorage.getItem('lang');
     this.lang = this.languages.find((lang: ILangItem) => lang.code === currentLang).name;
-  }
-
-  public setLanguage(lang: ILangItem): void {
-    this.isOpen = false;
-    this.canReload = true;
   }
 
   public open() {

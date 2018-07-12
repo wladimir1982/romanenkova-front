@@ -21,12 +21,12 @@
         <a href="https://instagram.com" class="social-icon icon-instagram"></a>
       </div>
       <div class="language-selector" (click)="open()" (clickOutside)="close()">
-        <span>{{lang}}</span>
-        <span class="icon-arrow-down accent"></span>
+        <span class="language-selector-text">{{lang}}</span>
+        <span class="language-selector-icon icon-arrow-down accent"></span>
         <ul class="language-list" [class.open]="isOpen">
-          <li class="language-list-item" *ngFor="let lang of languages; let i = index" (click)="setLanguage(lang)">
-            <a [routerLink]="lang.href" class="language-list-item-text">{{lang.name}}</a>
-            <span class="icon-arrow-down accent" (click)="close()" *ngIf="i === 0"></span>
+          <li class="language-list-item" *ngFor="let lang of languages; let i = index">
+            <a [attr.href]="lang.href" class="language-list-item-text">{{lang.name}}</a>
+            <span class="language-list-item-icon icon-arrow-down accent" (click)="close()" *ngIf="i === 0"></span>
           </li>
         </ul>
       </div>

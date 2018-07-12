@@ -8,6 +8,40 @@
   transition: $duration width cubic-bezier(.84, -.36, .13, 1.13);
 }
 
+@keyframes arrowdown {
+  0% {
+    margin-top: 0;
+    opacity: 1;
+  }
+  25% {
+    margin-top: 10px;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    margin-top: 10px;
+    opacity: 0;
+  }
+}
+
+@keyframes arrowup {
+  0% {
+    margin-top: 0;
+    opacity: 1;
+  }
+  25% {
+    margin-top: -10px;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    margin-top: -10px;
+    opacity: 0;
+  }
+}
+
 .header-block {
   &-wrapper {
     display: grid;
@@ -167,6 +201,22 @@
     position: relative;
     text-transform: uppercase;
     transition: .3s color ease;
+    display: flex;
+    height: 30px;
+
+    &-text {
+      align-self: center;
+    }
+
+    &-icon {
+      align-self: center;
+    }
+
+    &:hover {
+      .language-selector-icon {
+        animation: arrowdown 1s infinite linear;
+      }
+    }
 
     .language-list {
       list-style: none;
@@ -178,22 +228,37 @@
       border: 1px solid #000;
       top: -200px;
       opacity: 0;
-      transition: .3s all cubic-bezier(.46,.17,.47,1.58);
+      transition: .3s all cubic-bezier(.46, .17, .47, 1.58);
 
       &.open {
         top: -15px;
         opacity: 1;
-        transition: .5s all cubic-bezier(.46,.17,.23,1.32);
+        transition: .5s all cubic-bezier(.46, .17, .23, 1.32);
       }
 
       &-item {
         padding: 15px 15px 0;
         background-color: #ffffff;
         white-space: nowrap;
+        display: flex;
 
-        &-text:hover {
-          color: $color-text-accent;
-          transition: .3s color ease;
+        &-icon {
+          transform: rotate(180deg);
+          display: block;
+          align-self: center;
+
+          &:hover {
+            animation: arrowup 1s infinite linear;
+          }
+        }
+
+        &-text {
+          align-self: center;
+
+          &:hover {
+            color: $color-text-accent;
+            transition: .3s color ease;
+          }
         }
 
         &:last-child {
