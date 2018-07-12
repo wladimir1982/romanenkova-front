@@ -8,11 +8,12 @@ import {HeaderComponent} from './components/header/header.component';
 import {ContactsComponent} from './components/contacts/contacts.component';
 import {AttendButtonComponent} from './components/attend-button/attend-button.component';
 import {ResolvePageService} from './services/resolve-page.service';
-import {AboutComponent} from '../about/components/about/about.component';
+import {ClickOutsideModule} from 'ng4-click-outside';
 
 @NgModule({
   imports: [
     CommonModule,
+    ClickOutsideModule,
     RouterModule.forChild([
       {
         path: 'about',

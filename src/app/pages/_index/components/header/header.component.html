@@ -1,38 +1,38 @@
-<div class="nav-wrapper" [class.fixed]="isFixed">
-  <a class="link-root" routerLink="" *ngIf="title">
-    <h4>
-      <span class="accent">{{title[0]?.toUpperCase()}} </span>
-      <span>{{title[1]?.toUpperCase()}}</span>
-    </h4>
-  </a>
-  <nav class="navigation">
-    <ul class="navigation-list">
-      <li class="navigation-list-item" *ngFor="let navItem of nav">
-        <a class="navigation-list-item-text" [routerLink]="navItem.href" routerLinkActive="active">
-          {{navItem.name}}
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <div class="right-side">
-    <div class="social">
-      <a href="https://facebook.com" class="social-icon icon-facebook"></a>
-      <a href="https://instagram.com" class="social-icon icon-instagram"></a>
-    </div>
-    <div class="language-selector" (click)="open = !open">
-      <span>{{lang}}</span>
-      <span class="icon-arrow-down accent"></span>
-      <ul class="language-list" [class.open]="open">
-        <li class="language-list-item" *ngFor="let lang of languages; let i = index" (click)="setLanguage(lang)">
-          <span>{{lang.name}}</span>
-          <span class="icon-arrow-down accent" *ngIf="i === 0"></span>
+<div class="header-block-wrapper" [ngStyle]="{'background-image': 'url(' + src + ')'}">
+  <div class="nav-wrapper" [class.fixed]="isFixed">
+    <a class="link-root" routerLink="" *ngIf="title">
+      <h4>
+        <span class="accent">{{title[0]?.toUpperCase()}} </span>
+        <span>{{title[1]?.toUpperCase()}}</span>
+      </h4>
+    </a>
+    <nav class="navigation">
+      <ul class="navigation-list">
+        <li class="navigation-list-item" *ngFor="let navItem of nav">
+          <a class="navigation-list-item-text" [routerLink]="navItem.href" routerLinkActive="active">
+            {{navItem.name}}
+          </a>
         </li>
       </ul>
+    </nav>
+    <div class="right-side">
+      <div class="social">
+        <a href="https://facebook.com" class="social-icon icon-facebook"></a>
+        <a href="https://instagram.com" class="social-icon icon-instagram"></a>
+      </div>
+      <div class="language-selector" (click)="open()" (clickOutside)="close()">
+        <span>{{lang}}</span>
+        <span class="icon-arrow-down accent"></span>
+        <ul class="language-list" [class.open]="isOpen">
+          <li class="language-list-item" *ngFor="let lang of languages; let i = index" (click)="setLanguage(lang)">
+            <a [routerLink]="lang.href" class="language-list-item-text">{{lang.name}}</a>
+            <span class="icon-arrow-down accent" (click)="close()" *ngIf="i === 0"></span>
+          </li>
+        </ul>
+      </div>
     </div>
+    <div class="bottom-line"></div>
   </div>
-  <div class="bottom-line"></div>
-</div>
-<div class="header-block-wrapper" [ngStyle]="{'background-image': 'url(' + src + ')'}">
   <h1 class="page-header">
     {{header}}
   </h1>

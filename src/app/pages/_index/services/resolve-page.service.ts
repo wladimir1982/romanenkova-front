@@ -11,7 +11,6 @@ import {HttpClient} from '@angular/common/http';
 export class ResolvePageService implements Resolve<IPage> {
   resolve(route: ActivatedRouteSnapshot): Observable<IPage> {
     const lang = localStorage.getItem('lang');
-    console.log('resolver', route.params, route.data.pageid);
     if (route.data.pageid) {
       return this.httpClient.get<IPage>(environment.api + 'interface', {params: {lang, id: route.data.pageid}});
     }
