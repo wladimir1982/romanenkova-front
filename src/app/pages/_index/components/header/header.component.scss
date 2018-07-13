@@ -45,7 +45,7 @@
 .header-block {
   &-wrapper {
     display: grid;
-    grid-template-columns: [left] 1fr [middle] 3.5fr [right] 1fr;
+    grid-template-columns: [left] 1fr [middle] 2.75fr [right] 1fr;
     grid-template-rows: [top] 120px [header] 150px [button] auto;
     width: 100%;
     height: 525px;
@@ -72,6 +72,7 @@
   align-self: end;
   margin-bottom: 15px;
   font-weight: 600;
+  text-align: center;
 }
 
 .nav-wrapper {
