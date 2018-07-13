@@ -8,6 +8,7 @@ import IPage from "../../../../interfaces/iPage";
 })
 export class ContactsComponent implements OnInit {
   @Input() data: IPage;
+  @Input() attend: string;
 
   constructor() { }
 

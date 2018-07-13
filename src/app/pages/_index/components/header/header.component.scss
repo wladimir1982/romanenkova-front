@@ -255,7 +255,10 @@
         &-text {
           align-self: center;
 
+          text-decoration: none;
+
           &:hover {
+            text-decoration: none;
             color: $color-text-accent;
             transition: .3s color ease;
           }

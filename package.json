@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --configuration=qa --aot",
+    "start": "ng serve --configuration=qa --aot --port=4201",
     "start:local": "ng serve --configuration=local --aot",
     "build": "ng build --configuration=qa --aot",
     "test": "ng test",

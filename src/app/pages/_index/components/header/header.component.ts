@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
       .pipe(filter((e: RouterEvent) => e instanceof NavigationEnd))
       .subscribe((e: NavigationEnd): void => {
         this.languages.forEach((lang: ILangItem) => {
-          lang.href = this.router.url.replace(/^\/(en|ru|uk)?(\/)/gmi, `/${lang.code}/`);
+          lang.href = this.router.url.replace(/^\/(en|ru|uk)?(\/|$)/gmi, `/${lang.code}/`);
         });
       });
   }
