@@ -16,22 +16,22 @@ export class IndexComponent implements OnInit {
   public src: string;
   public header: string;
   public attend: string;
-  public footerData: IPage;
+  public footer: IPage;
 
   constructor(private route: ActivatedRoute, private router: Router) {
     router.events
-    .pipe(filter((e: RouterEvent) => e instanceof NavigationEnd))
-    .subscribe((e: NavigationEnd): void => {
-      this.header = route.snapshot.firstChild.data.pageData.header;
-      this.src = this.route.snapshot.firstChild.data.headerData ? 'assets/header-main.png' : 'assets/header-common.png';
-    });
+      .pipe(filter((e: RouterEvent) => e instanceof NavigationEnd))
+      .subscribe((e: NavigationEnd): void => {
+        this.header = route.snapshot.firstChild.data.pageData.header;
+        this.src = this.route.snapshot.firstChild.data.headerData ? 'assets/header-main.png' : 'assets/header-common.png';
+      });
   }
 
   ngOnInit() {
     // todo: perform more clear way to receive data
     this.title = this.route.snapshot['_resolvedData'].headerData.title;
     this.nav = this.route.snapshot['_resolvedData'].headerData.navigation;
+    this.footer = this.route.snapshot['_resolvedData'].headerData.contacts;
     this.attend = this.route.snapshot['_resolvedData'].headerData.buttonText;
-    this.footerData = this.route.snapshot.firstChild.data.footerData;
   }
 }

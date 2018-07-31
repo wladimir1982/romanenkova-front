@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { ResolveIndexService } from './resolve-header.service';
+import { ResolveIndexService } from './resolve-index.service';
 
 describe('ResolveIndexService', () => {
   beforeEach(() => {

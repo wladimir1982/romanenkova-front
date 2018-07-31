@@ -1,5 +1,7 @@
+import {TLanguage} from "./types";
+
 export interface ILangItem {
   name: string;
-  code: string;
+  code: TLanguage;
   href?: string;
 }
