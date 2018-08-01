@@ -1,1 +1,11 @@
-{{mainText}}
+<div class="content">
+  <div class="text-wrapper">
+    <p class="text-paragraph" *ngFor="let paragraph of mainText">
+      {{paragraph}}
+    </p>
+  </div>
+  <h2 class="header-wrapper">Irina Romanenkova</h2>
+  <div class="swiper-wrapper">
+    <img class="swiper-photo" [src]="photos[0]" alt="photo">
+  </div>
+</div>

@@ -1,0 +1,37 @@
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 1fr;
+  grid-template-rows: 150px auto;
+  column-gap: 115px;
+}
+
+.text-wrapper {
+  grid-column: 2;
+  grid-row: 1 /span 2;
+}
+
+.text-paragraph {
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.header-wrapper {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: right;
+  width: 45%;
+  margin-left: auto;
+}
+
+.swiper-wrapper {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.swiper-photo {
+  max-width: 650px;
+  margin-left: auto;
+  display: block;
+}
