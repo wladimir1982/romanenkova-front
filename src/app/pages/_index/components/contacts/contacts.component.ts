@@ -13,6 +13,5 @@ export class ContactsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('fromContacts', this.data);
   }
 }

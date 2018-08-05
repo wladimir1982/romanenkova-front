@@ -59,7 +59,7 @@ import {ClickOutsideModule} from 'ng4-click-outside';
     FooterComponent,
     HeaderComponent,
     ContactsComponent,
-    AttendButtonComponent
+    AttendButtonComponent,
   ],
   exports: []
 })

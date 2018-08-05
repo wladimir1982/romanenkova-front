@@ -4,7 +4,6 @@ import {DOCUMENT} from '@angular/common';
 import {ILangItem} from '../../../../interfaces/iLangItem';
 import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from '@angular/router';
 import {filter} from 'rxjs/internal/operators';
-import {ResolveIndexService} from "../../services/resolve-index.service";
 import {LanguageGuardService} from "../../../../language-guard.service";
 
 @Component({
@@ -18,7 +17,7 @@ export class HeaderComponent implements OnInit {
   public lang: string;
   public languages: Array<ILangItem>;
 
-  @Input() src: string;
+  @Input() isRoot: boolean;
   @Input() header: string;
   @Input() attend: string;
   @Input() title: Array<string>;

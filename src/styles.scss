@@ -2,11 +2,12 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700&subset=cyrillic');
 @import 'app/styles/_variables';
 @import 'app/styles/_mixins';
-@import "icomoon";
+@import 'icomoon';
 
 html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
 
   font-family: 'Montserrat', sans-serif;
   font-size: 17px;
@@ -16,6 +17,7 @@ html, body {
 
   a {
     color: $color-text-regular;
+    text-decoration: none;
   }
 
   h1, h2, h3, h4, .h1 {
@@ -50,8 +52,7 @@ html, body {
   .accent {
     color: $color-text-accent;
   }
-
-  @media (max-width: $moblie-width) {
+  @include mobile-breakpoint {
     font-size: 15px;
     line-height: 22px;
 

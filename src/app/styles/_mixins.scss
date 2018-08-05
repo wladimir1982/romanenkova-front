@@ -1,5 +1,13 @@
-@import './app/styles/_variables';
+@import '_variables';
 
-@mixin clear() {
-  color: red;
+@mixin mobile-breakpoint() {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin desktop-breakpoint() {
+  @media (min-width: 768px) {
+    @content;
+  }
 }

@@ -1,13 +1,9 @@
 <div class="container">
-  <header class="header">
-    <app-header [src]="src" [title]="title" [nav]="nav" [header]="header" [attend]="attend"></app-header>
-  </header>
+  <app-header [isRoot]="isRoot" [title]="title" [nav]="nav" [header]="header" [attend]="attend"></app-header>
 
   <main class="content">
     <router-outlet></router-outlet>
   </main>
 
-  <footer class="footer">
-    <app-footer [data]="footer" [attend]="attend"></app-footer>
-  </footer>
+  <app-footer class="footer" [data]="footer" [attend]="attend"></app-footer>
 </div>

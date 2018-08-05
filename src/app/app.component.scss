@@ -1,5 +1,11 @@
+@import "styles/_mixins";
+
 .container {
-  display: grid;
-  grid-template-rows: 525px auto 528px;
-  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.footer {
+  margin-top: auto;
 }

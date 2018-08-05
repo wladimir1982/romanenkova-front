@@ -1,4 +1,4 @@
-<div class="header-block-wrapper" [ngStyle]="{'background-image': 'url(' + src + ')'}">
+<header class="header-block-wrapper" [class.is-root]="isRoot">
   <div class="nav-wrapper" [class.fixed]="isFixed">
     <a class="link-root" routerLink="" *ngIf="title">
       <h4>
@@ -33,7 +33,18 @@
     </div>
     <div class="bottom-line"></div>
   </div>
-  <h1 class="page-header">
+  <div class="m-nav-wrapper">
+    <a class="link-root" routerLink="" *ngIf="title">
+      <h4>
+        <span class="accent">{{title[0]?.toUpperCase()}} </span>
+        <span>{{title[1]?.toUpperCase()}}</span>
+      </h4>
+    </a>
+    <div class="hamburger">
+      <div class="strips"></div>
+    </div>
+  </div>
+  <h1 class="page-header" [class.fixed]="isFixed">
     {{header}}
   </h1>
   <div class="header-block button-wrapper">
@@ -41,4 +52,4 @@
       <app-attend-button [text]="attend"></app-attend-button>
     </span>
   </div>
-</div>
+</header>

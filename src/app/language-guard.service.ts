@@ -26,7 +26,7 @@ export class LanguageGuardService implements CanActivate {
         availableLangs = data.availableLangs.map((lang: any) => lang.code);
         this.langItems = data.availableLangs;
 
-        if (availableLangs.includes(route.params.lang)) {
+        if (availableLangs.indexOf(route.params.lang) > -1) {
           localStorage.setItem('lang', route.params.lang);
           resolver.next(true);
           resolver.complete();

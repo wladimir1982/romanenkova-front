@@ -13,7 +13,7 @@ import IPage from "../../../../interfaces/iPage";
 export class IndexComponent implements OnInit {
   public title: Array<string>;
   public nav: Array<INavigationItem>;
-  public src: string;
+  public isRoot: boolean;
   public header: string;
   public attend: string;
   public footer: IPage;
@@ -23,7 +23,7 @@ export class IndexComponent implements OnInit {
       .pipe(filter((e: RouterEvent) => e instanceof NavigationEnd))
       .subscribe((e: NavigationEnd): void => {
         this.header = route.snapshot.firstChild.data.pageData.header;
-        this.src = this.route.snapshot.firstChild.data.headerData ? 'assets/header-main.png' : 'assets/header-common.png';
+        this.isRoot = Boolean(this.route.snapshot.firstChild.data.headerData);
       });
   }
 
