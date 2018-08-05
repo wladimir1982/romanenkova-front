@@ -82,6 +82,9 @@
             },
             "qa": {
               "browserTarget": "front:build:qa"
+            },
+            "local": {
+              "browserTarget": "front:build:local"
             }
           }
         },

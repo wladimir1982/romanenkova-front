@@ -1,41 +1,50 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
 import {environment} from "../environments/environment";
-import {Observable, of} from "rxjs/index";
+import {Observable, of, ReplaySubject} from "rxjs/index";
 import {map, tap} from "rxjs/internal/operators";
 import {HttpClient} from "@angular/common/http";
+import {TLanguage} from "./interfaces/types";
+import {ILanguageResponse} from "./interfaces/iResponse";
+import {ILangItem} from "./interfaces/iLangItem";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LanguageGuardService implements CanActivate {
+  public langItems: Array<ILangItem>;
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     const storedLang = localStorage.getItem('lang');
+    const resolver = new ReplaySubject<boolean>();
+    let lang;
+    let availableLangs: Array<TLanguage>;
 
-    if (route.params.lang === 'en' || route.params.lang === 'ru' || route.params.lang === 'uk') {
-      localStorage.setItem('lang', route.params.lang);
-      return of(true);
-    }
+    this.httpClient.get<ILanguageResponse>(environment.api + 'language')
+      .subscribe((data: ILanguageResponse) => {
+        lang = data.lang;
+        availableLangs = data.availableLangs.map((lang: any) => lang.code);
+        this.langItems = data.availableLangs;
 
-    if (route.params.lang === '404') {
-      return of(false);
-    }
+        if (availableLangs.includes(route.params.lang)) {
+          localStorage.setItem('lang', route.params.lang);
+          resolver.next(true);
+          resolver.complete();
+          return;
+        }
 
-    if (storedLang) {
-      this.route.navigate([storedLang]);
-      return of(false);
-    }
+        if (storedLang) {
+          this.route.navigate([storedLang]);
+        }
 
+        localStorage.setItem('lang', lang);
+        resolver.next(false);
+        resolver.complete();
+      });
 
-    return this.httpClient.get<{ lang: string }>(environment.api + 'language')
-      .pipe(
-        tap((lang: { lang: string }) => {
-          localStorage.setItem('lang', lang.lang);
-          this.route.navigate([lang.lang]);
-        }),
-        map(() => false)
-      )
+    return resolver.asObservable();
   }
 
-  constructor(private route: Router, private httpClient: HttpClient) { }
+  constructor(private route: Router, private httpClient: HttpClient) {
+  }
 }

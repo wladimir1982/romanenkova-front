@@ -6,5 +6,6 @@ export interface IIndexPageData {
   title: [string, string],
   navigation: Array<INavigationItem>,
   buttonText: string,
-  contacts: IPage
+  contacts: IPage,
+  name: [string, string]
 }

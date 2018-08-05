@@ -24,12 +24,13 @@ export class ResolveIndexService {
   resolve(route: ActivatedRouteSnapshot): Observable<IIndexPageData> {
     return this.httpClient.get<[IPage, IPage]>(environment.api + 'interface', {params: {lang: route.params.lang, id: ['contacts', 'nav']}})
       .pipe(map((data: [IPage, IPage]): IIndexPageData => {
+        console.log(data);
         const contacts: IPage = data.find((page: IPage): boolean => page.entityId === 'contacts');
         const header: IPage = data.find((page: IPage): boolean => page.entityId === 'nav');
-        const rawTitle: string = (header.pageData[0] as INavigationItem).name as string;
-        const title = rawTitle.split(' ') as [string, string];
+        const title: [string, string] = (header.pageData[0] as INavigationItem).name as [string, string];
         const buttonText = (header.pageData[1] as INavigationItem).name as string;
-        const navigation = header.pageData.slice(2, 7) as Array<INavigationItem>;
+        const name = (header.pageData[2] as INavigationItem).name as [string, string];
+        const navigation = header.pageData.slice(3, 8) as Array<INavigationItem>;
 
         (navigation as Array<INavigationItem>).forEach((navItem: INavigationItem): void => {
           const anchor: string = navItem.anchor;
@@ -41,7 +42,8 @@ export class ResolveIndexService {
           title,
           buttonText,
           navigation,
-          contacts
+          contacts,
+          name
         };
       }));
   }

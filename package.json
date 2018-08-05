@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --configuration=qa --aot --port=4201",
-    "start:local": "ng serve --configuration=local --aot",
+    "start:local": "ng serve --configuration=local --aot --port=4201",
     "build": "ng build --configuration=qa --aot",
     "test": "ng test",
     "lint": "ng lint",
