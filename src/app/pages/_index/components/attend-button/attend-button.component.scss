@@ -1,4 +1,5 @@
 @import './../../../../../app/styles/_variables';
+@import './../../../../../app/styles/_mixins';
 
 .attend-button {
   height: 70px;
@@ -14,6 +15,11 @@
   transform: perspective(1px) translateZ(0);
   transition: color .3s ease;
   font-size: 1rem;
+
+  @include mobile-breakpoint {
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, .15);
+    min-width: auto;
+  }
 
   &:before {
     content: '';
