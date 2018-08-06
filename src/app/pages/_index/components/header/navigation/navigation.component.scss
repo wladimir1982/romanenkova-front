@@ -1,0 +1,67 @@
+@import './../../../../../../app/styles/_variables';
+@import './../../../../../../app/styles/_mixins';
+
+.navigation {
+  text-transform: uppercase;
+
+  &-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-item {
+      margin-right: 15px;
+      font-weight: bold;
+
+      &-text {
+        color: $color-text-accent;
+        transition: .3s color ease;
+        white-space: nowrap;
+
+        &, &:hover, &:focus, &:visited {
+          text-decoration: none;
+        }
+
+        &.active {
+          color: $color-text-regular;
+          transition: .3s color ease;
+          border-bottom: 1px solid $color-text-regular;
+        }
+
+        &:hover {
+          color: $color-text-regular;
+          transition: .3s color ease;
+        }
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      @include mobile-breakpoint {
+        margin-right: 0;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        text-align: center;
+
+        &:first-child {
+          padding-top: 30px;
+        }
+        &:last-child {
+          padding-bottom: 30px;
+        }
+      }
+    }
+
+    @include mobile-breakpoint {
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 20px;
+    }
+  }
+
+  @include mobile-breakpoint {
+    flex-basis: auto;
+  }
+}

@@ -1,0 +1,32 @@
+@import './../../../../../../app/styles/_variables';
+@import './../../../../../../app/styles/_mixins';
+
+.social {
+  flex-basis: 0;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  margin-right: 100px;
+
+  &-icon {
+    font-size: 1.5rem;
+    margin-right: 20px;
+
+    &, &:hover, &:focus, &:visited {
+      text-decoration: none;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  @include mobile-breakpoint {
+    flex-basis: auto;
+    justify-content: center;
+    margin-right: 0;
+    padding: 25px 30px;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+  }
+}

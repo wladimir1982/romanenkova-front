@@ -1,46 +1,23 @@
 <header class="header-block-wrapper" [class.is-root]="isRoot">
-  <div class="nav-wrapper" [class.fixed]="isFixed">
-    <a class="link-root" routerLink="" *ngIf="title">
+  <div class="nav-wrapper" [class.fixed]="isFixed" *ngIf="isNavOpen">
+    <a class="link-root desktop" routerLink="" *ngIf="title">
       <h4>
         <span class="accent">{{title[0]?.toUpperCase()}} </span>
         <span>{{title[1]?.toUpperCase()}}</span>
       </h4>
     </a>
-    <nav class="navigation">
-      <ul class="navigation-list">
-        <li class="navigation-list-item" *ngFor="let navItem of nav">
-          <a class="navigation-list-item-text" [routerLink]="navItem.href" routerLinkActive="active">
-            {{navItem.name}}
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <div class="right-side">
-      <div class="social">
-        <a href="https://facebook.com" class="social-icon icon-facebook"></a>
-        <a href="https://instagram.com" class="social-icon icon-instagram"></a>
-      </div>
-      <div class="language-selector" (click)="open()" (clickOutside)="close()">
-        <span class="language-selector-text">{{lang}}</span>
-        <span class="language-selector-icon icon-arrow-down accent"></span>
-        <ul class="language-list" [class.open]="isOpen">
-          <li class="language-list-item" *ngFor="let lang of languages; let i = index">
-            <a [attr.href]="lang.href" class="language-list-item-text">{{lang.name}}</a>
-            <span class="language-list-item-icon icon-arrow-down accent" (click)="close()" *ngIf="i === 0"></span>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="bottom-line"></div>
+    <app-navigation [nav]="nav" class="navigation" (click)="toggleNavOpen(false)"></app-navigation>
+    <app-social class="social" (click)="toggleNavOpen(false)"></app-social>
+    <app-language-selector [isLanguageListOpen]="isOpen" class="language"></app-language-selector>
   </div>
   <div class="m-nav-wrapper">
-    <a class="link-root" routerLink="" *ngIf="title">
+    <a class="link-root mobile" routerLink="" *ngIf="title">
       <h4>
         <span class="accent">{{title[0]?.toUpperCase()}} </span>
         <span>{{title[1]?.toUpperCase()}}</span>
       </h4>
     </a>
-    <div class="hamburger">
+    <div class="hamburger" (click)="toggleNavOpen(true)">
       <div class="strips"></div>
     </div>
   </div>

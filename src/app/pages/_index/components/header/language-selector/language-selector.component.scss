@@ -1,0 +1,80 @@
+@import './../../../../../../app/styles/_variables';
+@import './../../../../../../app/styles/_mixins';
+
+.language-selector {
+  align-self: center;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  text-transform: uppercase;
+  transition: .3s color ease;
+  display: flex;
+  height: 30px;
+
+  &-text {
+    align-self: center;
+  }
+
+  &-icon {
+    align-self: center;
+  }
+
+  &:hover {
+    .language-selector-icon {
+      animation: arrowdown 1s infinite linear;
+    }
+  }
+
+  .language-list {
+    list-style: none;
+    position: absolute;
+    left: -15px;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    z-index: 21;
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, .1);
+
+    &-item {
+      padding: 15px 15px 0;
+      background-color: #ffffff;
+      white-space: nowrap;
+      display: flex;
+
+      &-icon {
+        transform: rotate(180deg);
+        display: block;
+        align-self: center;
+
+        &:hover {
+          animation: arrowup 1s infinite linear;
+        }
+      }
+
+      &-text {
+        align-self: center;
+
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: none;
+          color: $color-text-accent;
+          transition: .3s color ease;
+        }
+      }
+
+      &:last-child {
+        padding-bottom: 15px;
+      }
+    }
+
+    @include mobile-breakpoint {
+      transform: translateX(-50%);
+      left: 50%;
+    }
+  }
+
+  @include mobile-breakpoint {
+    padding: 30px;
+  }
+}

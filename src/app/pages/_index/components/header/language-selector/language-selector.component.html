@@ -1,0 +1,10 @@
+<div class="language-selector" (click)="open()" (clickOutside)="close()">
+  <span class="language-selector-text" [title]="lang.name">{{lang.short}}</span>
+  <span class="language-selector-icon icon-arrow-down accent"></span>
+  <ul class="language-list" *ngIf="isLanguageListOpen.open">
+    <li class="language-list-item" *ngFor="let lang of languages; let i = index">
+      <a [attr.href]="lang.href" class="language-list-item-text" [title]="lang.name">{{lang.short}}</a>
+      <span class="language-list-item-icon icon-arrow-down accent" (click)="close()" *ngIf="i === 0"></span>
+    </li>
+  </ul>
+</div>

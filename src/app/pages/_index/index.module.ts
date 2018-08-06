@@ -9,6 +9,9 @@ import {ContactsComponent} from './components/contacts/contacts.component';
 import {AttendButtonComponent} from './components/attend-button/attend-button.component';
 import {ResolvePageService} from './services/resolve-page.service';
 import {ClickOutsideModule} from 'ng4-click-outside';
+import { NavigationComponent } from './components/header/navigation/navigation.component';
+import { SocialComponent } from './components/header/social/social.component';
+import { LanguageSelectorComponent } from './components/header/language-selector/language-selector.component';
 
 @NgModule({
   imports: [
@@ -60,6 +63,9 @@ import {ClickOutsideModule} from 'ng4-click-outside';
     HeaderComponent,
     ContactsComponent,
     AttendButtonComponent,
+    NavigationComponent,
+    SocialComponent,
+    LanguageSelectorComponent,
   ],
   exports: []
 })
