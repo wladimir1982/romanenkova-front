@@ -12,10 +12,12 @@ import {ClickOutsideModule} from 'ng4-click-outside';
 import { NavigationComponent } from './components/header/navigation/navigation.component';
 import { SocialComponent } from './components/header/social/social.component';
 import { LanguageSelectorComponent } from './components/header/language-selector/language-selector.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     ClickOutsideModule,
     RouterModule.forChild([
       {

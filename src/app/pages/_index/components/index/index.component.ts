@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from '@angular/router';
 import {INavigationItem} from '../../../../interfaces/iNavigation';
-import {filter, map, tap} from 'rxjs/internal/operators';
-import {Observable} from "rxjs/index";
-import IPage from "../../../../interfaces/iPage";
+import {filter} from 'rxjs/internal/operators';
+import IPage from '../../../../interfaces/iPage';
 
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IndexComponent implements OnInit {
   public title: Array<string>;

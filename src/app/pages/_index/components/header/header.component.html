@@ -1,5 +1,6 @@
 <header class="header-block-wrapper" [class.is-root]="isRoot">
-  <div class="nav-wrapper" [class.fixed]="isFixed" *ngIf="isNavOpen">
+  <div class="nav-wrapper" [class.fixed]="isFixed" *ngIf="isNavOpen && !isMobile">
+    <div class="close-button" (click)="toggleNavOpen(false)"></div>
     <a class="link-root desktop" routerLink="" *ngIf="title">
       <h4>
         <span class="accent">{{title[0]?.toUpperCase()}} </span>
@@ -8,7 +9,7 @@
     </a>
     <app-navigation [nav]="nav" class="navigation" (click)="toggleNavOpen(false)"></app-navigation>
     <app-social class="social" (click)="toggleNavOpen(false)"></app-social>
-    <app-language-selector [isLanguageListOpen]="isOpen" class="language"></app-language-selector>
+    <app-language-selector [(isLanguageListOpen)]="isOpen" class="language"></app-language-selector>
   </div>
   <div class="m-nav-wrapper">
     <a class="link-root mobile" routerLink="" *ngIf="title">
@@ -24,9 +25,9 @@
   <h1 class="page-header" [class.fixed]="isFixed">
     {{header}}
   </h1>
-  <div class="header-block button-wrapper">
-    <span class="button">
+  <div class="button-wrapper">
+    <div class="button">
       <app-attend-button [text]="attend"></app-attend-button>
-    </span>
+    </div>
   </div>
 </header>

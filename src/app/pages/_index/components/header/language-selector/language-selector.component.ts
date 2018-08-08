@@ -1,22 +1,23 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ILangItem} from '../../../../../interfaces/iLangItem';
 import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from '@angular/router';
 import {LanguageGuardService} from '../../../../../language-guard.service';
 import {filter} from 'rxjs/internal/operators';
-import {ILanguageState} from '../header.component';
 
 @Component({
   selector: 'app-language-selector',
   templateUrl: './language-selector.component.html',
-  styleUrls: ['./language-selector.component.scss']
+  styleUrls: ['./language-selector.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LanguageSelectorComponent implements OnInit {
   public lang: ILangItem;
   public languages: Array<ILangItem>;
 
-  @Input() public isLanguageListOpen: ILanguageState;
+  @Input() public isLanguageListOpen: boolean;
+  @Output() public isLanguageListOpenChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private route: ActivatedRoute, private router: Router, private languageGuardService: LanguageGuardService) {
+  constructor(private route: ActivatedRoute, private router: Router, private languageGuardService: LanguageGuardService, private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -35,14 +36,17 @@ export class LanguageSelectorComponent implements OnInit {
         this.languages.forEach((lang: ILangItem) => {
           lang.href = this.router.url.replace(/^\/(en|ru|uk|fr)?(\/|$)/gmi, `/${lang.code}/`);
         });
+        this.changeDetectorRef.markForCheck();
       });
   }
 
   public open() {
-    this.isLanguageListOpen.open = true;
+    this.isLanguageListOpen = true;
+    this.isLanguageListOpenChange.emit(true);
   }
 
   public close() {
-    this.isLanguageListOpen.open = false;
+    this.isLanguageListOpen = false;
+    this.isLanguageListOpenChange.emit(false);
   }
 }

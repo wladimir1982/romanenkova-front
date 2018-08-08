@@ -59,12 +59,17 @@
     }
   }
 
-  &.button-wrapper {
-    justify-self: center;
+}
 
-    .button {
-      justify-self: center;
-    }
+.button-wrapper {
+  justify-self: center;
+
+  @include mobile-breakpoint {
+    width: 85%;
+  }
+
+  .button {
+    justify-self: center;
   }
 }
 
@@ -201,5 +206,19 @@
   @include mobile-breakpoint {
     position: static;
     transform: translate(0, 0);
+  }
+}
+
+.close-button {
+  display: none;
+
+  @include mobile-breakpoint {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 15px;
+    height: 15px;
+    background-image: url(/assets/close.svg);
+    display: block;
   }
 }

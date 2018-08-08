@@ -1,6 +1,7 @@
-import {Component, HostListener, Inject, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, HostListener, Inject, Input, OnInit} from '@angular/core';
 import {INavigationItem} from '../../../../interfaces/iNavigation';
 import {DOCUMENT} from '@angular/common';
+import {tsStructureIsReused} from '@angular/compiler-cli/src/transformers/util';
 
 export interface ILanguageState {
   open: boolean;
@@ -9,12 +10,14 @@ export interface ILanguageState {
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
   public isFixed: boolean;
-  public isOpen: ILanguageState = {open: false};
+  public isOpen: boolean;
   public isNavOpen: boolean;
+  public isMobile: boolean;
 
   @Input() isRoot: boolean;
   @Input() header: string;
@@ -26,7 +29,7 @@ export class HeaderComponent implements OnInit {
   private listenter(e): void {
     const scrollTop = this.document.documentElement.scrollTop;
     this.isFixed = scrollTop > 35;
-    this.isOpen.open = false;
+    this.isOpen = false;
   }
 
   constructor(@Inject(DOCUMENT) private document: Document) {
@@ -35,7 +38,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     if (window.innerWidth >= 1024) {
-      this.isNavOpen = true;
+      this.isMobile = true;
     }
   }
 
