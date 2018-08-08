@@ -1,5 +1,5 @@
 <header class="header-block-wrapper" [class.is-root]="isRoot">
-  <div class="nav-wrapper" [class.fixed]="isFixed" *ngIf="isNavOpen && !isMobile">
+  <div class="nav-wrapper" [class.fixed]="isFixed" *ngIf="!isMobile || isNavOpen">
     <div class="close-button" (click)="toggleNavOpen(false)"></div>
     <a class="link-root desktop" routerLink="" *ngIf="title">
       <h4>
