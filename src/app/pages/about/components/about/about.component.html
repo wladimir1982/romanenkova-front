@@ -1,11 +1,17 @@
 <div class="content">
   <div class="text-wrapper">
     <!--<p class="text-paragraph" *ngFor="let paragraph of mainText">-->
-      <!--{{paragraph}}-->
+    <!--{{paragraph}}-->
     <!--</p>-->
   </div>
   <h2 class="header-wrapper">Irina Romanenkova</h2>
   <div class="swiper-wrapper">
-    <!--<img class="swiper-photo" [src]="photos[0]" alt="photo">-->
+    <app-slider [template]="photoTpl" [context]="{var: 'assas'}"></app-slider>
+    <!--<ng-container *ngFor="let photo of photos">-->
+      <ng-template let-var="var" #photoTpl>
+        <div [var]="var"></div>
+        <!--<img [src]="photos[0]" alt="" #photo>-->
+      </ng-template>
+    <!--</ng-container>-->
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChildren} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -8,12 +8,14 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class AboutComponent implements OnInit {
   // public mainText: Array<string> = [];
-  // public photos: Array<string>;
+  public photos: Array<string>;
+
+  @ViewChildren('photo') photo: any;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     // this.mainText = this.route.snapshot.data.pageData.pageData.split('\n').filter((s: string) => Boolean(s));
-    // this.photos = this.route.snapshot.data.pageData.images;
+    this.photos = this.route.snapshot.data.pageData.images;
   }
 }
