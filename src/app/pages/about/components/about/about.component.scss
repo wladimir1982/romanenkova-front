@@ -12,6 +12,8 @@
 }
 
 .text-paragraph {
+  margin-top: 15px;
+
   &:first-child {
     margin-top: 0;
   }
@@ -30,8 +32,8 @@
   grid-row: 2;
 }
 
-.swiper-photo {
-  max-width: 650px;
+.swiper-component-wrapper {
+  width: 300px;
+  height: 400px;
   margin-left: auto;
-  display: block;
 }

@@ -26,10 +26,15 @@ export class HeaderComponent implements OnInit {
   @Input() nav: Array<INavigationItem>;
 
   @HostListener('window:scroll')
-  private listenter(e): void {
+  private listenter(): void {
     const scrollTop = this.document.documentElement.scrollTop;
     this.isFixed = scrollTop > 35;
     this.isOpen = false;
+  }
+
+  @HostListener('window:resize')
+  private onResize() {
+    this.isMobile = window.innerWidth < 1024;
   }
 
   constructor(@Inject(DOCUMENT) private document: Document) {
@@ -37,9 +42,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (window.innerWidth < 1024) {
-      this.isMobile = true;
-    }
+    this.isMobile = window.innerWidth < 1024;
   }
 
   public toggleNavOpen(state: boolean): void {

@@ -1,0 +1,7 @@
+<div class="swiper-wrapper">
+  <swiper>
+    <ng-container *ngFor="let slide of slides">
+      <ng-container *ngTemplateOutlet="template; context: {slide: slide}"></ng-container>
+    </ng-container>
+  </swiper>
+</div>
