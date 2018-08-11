@@ -17,6 +17,7 @@ export class IndexComponent implements OnInit {
   public header: string;
   public attend: string;
   public footer: IPage;
+  public name: [string, string];
 
   constructor(private route: ActivatedRoute, private router: Router) {
     router.events
@@ -33,5 +34,6 @@ export class IndexComponent implements OnInit {
     this.nav = this.route.snapshot['_resolvedData'].headerData.navigation;
     this.footer = this.route.snapshot['_resolvedData'].headerData.contacts;
     this.attend = this.route.snapshot['_resolvedData'].headerData.buttonText;
+    this.name = this.route.snapshot.data.headerData.name;
   }
 }

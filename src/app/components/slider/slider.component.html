@@ -1,5 +1,14 @@
-<div class="swiper-wrapper">
-  <swiper>
+<div class="ngx-swiper__wrapper">
+  <div class="ngx-swiper__header">
+    <div class="ngx-swiper__slide-display">
+      <span class="slide-current accent">{{index + 1}}</span>
+      <span class="separator">/</span>
+      <span class="slide-total">{{slides.length}}</span>
+    </div>
+    <div class="ngx-swiper__slide-prev" (click)="slidePrev()" [class.disabled]="index === 0"></div>
+    <div class="ngx-swiper__slide-next" (click)="slideNext()" [class.disabled]="index === slides.length - 1"></div>
+  </div>
+  <swiper [config]="config" [(index)]="index" #swiper>
     <ng-container *ngFor="let slide of slides">
       <ng-container *ngTemplateOutlet="template; context: {slide: slide}"></ng-container>
     </ng-container>

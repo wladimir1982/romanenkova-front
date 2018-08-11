@@ -20,6 +20,7 @@ export class ResolveIndexService {
     {href: 'articles', anchor: 'articles'},
     {href: '#contacts', anchor: 'contacts'}
   ];
+  public name: string;
 
   resolve(route: ActivatedRouteSnapshot): Observable<IIndexPageData> {
     return this.httpClient.get<[IPage, IPage]>(environment.api + 'interface', {params: {lang: route.params.lang, id: ['contacts', 'nav']}})
@@ -28,7 +29,7 @@ export class ResolveIndexService {
         const header: IPage = data.find((page: IPage): boolean => page.entityId === 'nav');
         const title: [string, string] = (header.pageData[0] as INavigationItem).name as [string, string];
         const buttonText = (header.pageData[1] as INavigationItem).name as string;
-        const name = (header.pageData[2] as INavigationItem).name as [string, string];
+        const name = ((header.pageData[2] as INavigationItem).name as [string, string]).join(' ');
         const navigation = header.pageData.slice(3, 8) as Array<INavigationItem>;
 
         (navigation as Array<INavigationItem>).forEach((navItem: INavigationItem): void => {
@@ -36,6 +37,8 @@ export class ResolveIndexService {
           const navUrlItem: INavigationUrl = this.navigationUrls.find((navUrl: INavigationUrl): boolean => navUrl.anchor === anchor);
           navItem.href = navUrlItem.href;
         });
+
+        this.name = name;
 
         return {
           title,

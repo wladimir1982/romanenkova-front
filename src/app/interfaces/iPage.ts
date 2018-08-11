@@ -7,4 +7,5 @@ export default interface IPage {
   pageData?: string | Array<INavigationItem> | Array<IContact>;
   entityId: TPageId;
   language: TLanguage;
+  name?: string;
 }

@@ -10,6 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 export class AboutComponent implements OnInit {
   public mainText: Array<string> = [];
   public photos: Array<string>;
+  public name: Array<string>;
 
   @ViewChildren('photo') photo: any;
 
@@ -17,6 +18,7 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     this.mainText = this.route.snapshot.data.pageData.pageData.split('\n').filter((s: string) => Boolean(s));
+    this.name = this.route.snapshot.data.pageData.name.split(/\s/).filter((s: string) => Boolean(s));
     this.photos = this.route.snapshot.data.pageData.images;
   }
 }

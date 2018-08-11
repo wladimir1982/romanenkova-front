@@ -1,0 +1,124 @@
+@import './../../styles/_variables';
+@import './../../styles/_mixins';
+
+$arrow: 2px solid #ffffff;
+
+.ngx-swiper {
+  &__wrapper {
+    height: 100%;
+    width: 100%;
+    //box-shadow: 0 0 50px 0 rgba(0, 0, 0, .1);
+    position: relative;
+  }
+
+  &__header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    //background: linear-gradient(to left, rgba(255, 255, 255, 0.75) 150px, rgba(255, 255, 255, 0) 100%);
+    background-color: rgba(255, 255, 255, .5);
+    z-index: 2;
+  }
+
+  &__slide-display {
+    padding: 0 40px;
+
+    .slide-current {
+      font-weight: bold;
+    }
+  }
+
+  &__slide-prev, &__slide-next {
+    background-color: $color-text-accent;
+    flex-basis: 75px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 100%;
+    position: relative;
+
+    &:not(.disabled) {
+      cursor: pointer;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      transform: translate(-50%, -50%) rotate(45deg);
+      left: 50%;
+      top: 50%;
+    }
+  }
+
+  &__slide-prev {
+    &:after {
+      border-bottom: $arrow;
+      border-left: $arrow;
+    }
+
+    &.disabled:after {
+      border-color: #cccccc;
+    }
+
+    &:not(.disabled):hover:after {
+      animation: arrowleft 1s infinite linear;
+    }
+  }
+
+  &__slide-next {
+    &:after {
+      border-top: $arrow;
+      border-right: $arrow;
+    }
+
+    &.disabled:after {
+      border-color: #cccccc;
+    }
+
+    &:not(.disabled):hover:after {
+      animation: arrowright 1s infinite linear;
+    }
+  }
+}
+
+@keyframes arrowleft {
+  0% {
+    left: 50%;
+    opacity: 1;
+  }
+  25% {
+    left: calc(50% - 10px);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    left: calc(50% - 10px);
+    opacity: 0;
+  }
+}
+
+@keyframes arrowright {
+  0% {
+    left: 50%;
+    opacity: 1;
+  }
+  25% {
+    left: calc(50% + 10px);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    left: calc(50% + 10px);
+    opacity: 0;
+  }
+}
+

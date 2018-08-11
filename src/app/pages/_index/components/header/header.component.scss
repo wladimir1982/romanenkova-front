@@ -5,40 +5,6 @@
   transition: background-color $dur1 ease .3s,  box-shadow $dur2 ease .3s;
 }
 
-@keyframes arrowdown {
-  0% {
-    margin-top: 0;
-    opacity: 1;
-  }
-  25% {
-    margin-top: 10px;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    margin-top: 10px;
-    opacity: 0;
-  }
-}
-
-@keyframes arrowup {
-  0% {
-    margin-top: 0;
-    opacity: 1;
-  }
-  25% {
-    margin-top: -10px;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    margin-top: -10px;
-    opacity: 0;
-  }
-}
-
 .header-block {
   &-wrapper {
     display: flex;

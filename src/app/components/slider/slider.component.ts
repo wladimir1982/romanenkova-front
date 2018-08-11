@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {SwiperConfigInterface, SwiperComponent, SwiperDirective} from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'app-slider',
@@ -9,9 +10,27 @@ import {ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef} from '@a
 export class SliderComponent<T> implements OnInit {
   @Input() public template: Array<TemplateRef<T>>;
   @Input() public slides: Array<T>;
+  @ViewChild('swiper') public swiper: SwiperComponent;
 
-  constructor() { }
+  public swiperDirective: SwiperDirective;
+  public index: number = 0;
+  public config: SwiperConfigInterface = {
+    slidesPerView: 'auto',
+    direction: 'horizontal'
+  };
+
+  constructor() {
+  }
+
+  public slideNext() {
+    this.swiperDirective.nextSlide();
+  }
+
+  public slidePrev() {
+    this.swiperDirective.prevSlide();
+  }
 
   ngOnInit() {
+    this.swiperDirective = this.swiper.directiveRef;
   }
 }

@@ -1,13 +1,26 @@
 @import '_variables';
 
 @mixin mobile-breakpoint() {
-  @media (max-width: 1023px) {
+  @media (max-width: 767px) {
     @content;
   }
 }
 
+@mixin tablet-breakpoint {
+  @media (max-width: 1023px) {
+    @content
+  }
+}
+
+@mixin desktop-sm-breakpoint {
+  @media (max-width: 1279px) {
+    @content
+  }
+}
+
 @mixin desktop-breakpoint() {
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     @content;
   }
 }
+

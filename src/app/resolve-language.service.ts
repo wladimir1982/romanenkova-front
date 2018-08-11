@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Resolve, Route, Router, RouterStateSnapshot} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
+import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'

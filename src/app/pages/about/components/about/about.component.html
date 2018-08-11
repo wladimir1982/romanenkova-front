@@ -4,13 +4,19 @@
       {{paragraph}}
     </p>
   </div>
-  <h2 class="header-wrapper">Irina Romanenkova</h2>
+  <div class="header-wrapper">
+    <h2 class="header-wrapper" *ngFor="let namePart of name">{{namePart}}</h2>
+  </div>
   <div class="swiper-wrapper">
     <div class="swiper-component-wrapper">
       <app-slider [template]="photoTpl" [slides]="photos"></app-slider>
 
       <ng-template #photoTpl let-source="slide">
-        <img [src]="source" alt="" #photo>
+        <div class="swiper-slide-wrapper">
+          <div class="image-wrapper">
+            <img class="image" [src]="source" alt="Slider Photo">
+          </div>
+        </div>
       </ng-template>
     </div>
   </div>

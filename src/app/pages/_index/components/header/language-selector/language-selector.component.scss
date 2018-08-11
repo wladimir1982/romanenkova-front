@@ -78,3 +78,37 @@
     padding: 30px;
   }
 }
+
+@keyframes arrowdown {
+  0% {
+    margin-top: 0;
+    opacity: 1;
+  }
+  25% {
+    margin-top: 10px;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    margin-top: 10px;
+    opacity: 0;
+  }
+}
+
+@keyframes arrowup {
+  0% {
+    margin-top: 0;
+    opacity: 1;
+  }
+  25% {
+    margin-top: -10px;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    margin-top: -10px;
+    opacity: 0;
+  }
+}
