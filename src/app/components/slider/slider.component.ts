@@ -16,7 +16,8 @@ export class SliderComponent<T> implements OnInit {
   public index: number = 0;
   public config: SwiperConfigInterface = {
     slidesPerView: 'auto',
-    direction: 'horizontal'
+    direction: 'horizontal',
+    spaceBetween: 1
   };
 
   constructor() {
