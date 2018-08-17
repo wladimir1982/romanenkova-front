@@ -52,6 +52,7 @@ html, body {
   .accent {
     color: $color-text-accent;
   }
+
   @include mobile-breakpoint {
     font-size: 15px;
     line-height: 22px;

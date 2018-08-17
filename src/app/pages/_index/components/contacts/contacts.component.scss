@@ -29,4 +29,8 @@
 
 .attend-button {
   align-self: center;
+
+  @include mobile-breakpoint {
+    padding: 0 20px;
+  }
 }

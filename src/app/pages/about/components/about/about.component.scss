@@ -1,4 +1,5 @@
 @import './../../../../../app/styles/mixins';
+
 .content {
   display: -ms-grid;
   display: grid;
@@ -6,6 +7,13 @@
   grid-template-columns: 45% 55%;
   -ms-grid-rows: auto 1fr;
   grid-template-rows: auto 1fr;
+
+  @include mobile-breakpoint {
+    -ms-grid-columns: 100%;
+    grid-template-columns: 100%;
+    -ms-grid-rows: auto auto auto;
+    grid-template-rows: auto auto auto;
+  }
 }
 
 .text-wrapper {
@@ -15,6 +23,15 @@
   -ms-grid-row-span: 1;
   grid-row: 1 /span 2;
   padding-left: 100px;
+
+  @include mobile-breakpoint {
+    padding: 0 20px;
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 3;
+    -ms-grid-row-span: 1;
+    grid-row: 3;
+  }
 }
 
 .text-paragraph {
@@ -33,6 +50,15 @@
   text-align: right;
   margin-left: auto;
   padding-bottom: 100px;
+
+  @include mobile-breakpoint {
+    padding: 0 20px 20px;
+    margin: 0;
+    margin-right: auto;
+    text-align: left;
+    -ms-grid-row: 2;
+    grid-row: 2;
+  }
 }
 
 .swiper-wrapper {
@@ -40,13 +66,26 @@
   grid-column: 1;
   -ms-grid-row: 2;
   grid-row: 2;
+
+  @include mobile-breakpoint {
+    -ms-grid-row: 1;
+    grid-row: 1;
+  }
 }
 
 .swiper-component-wrapper {
   //todo: if width set < than container's, wirks good
   //todo: otherwise last index isn't triggered. Think of it
-  width: 400px;
+  width: 600px;
   margin-left: auto;
+
+  @include tablet-breakpoint {
+    width: 400px;
+  }
+
+  @include mobile-breakpoint {
+    width: 100%;
+  }
 }
 
 .image {

@@ -6,6 +6,10 @@ $arrow: 2px solid #ffffff;
 .ngx-swiper {
   &__wrapper {
     position: relative;
+
+    @include mobile-breakpoint {
+      margin-bottom: 50px;
+    }
   }
 
   &__header {
@@ -19,6 +23,12 @@ $arrow: 2px solid #ffffff;
     align-items: center;
     background-color: rgba(255, 255, 255, .5);
     z-index: 2;
+
+    @include mobile-breakpoint {
+      height: 50px;
+      bottom: -50px;
+      top: auto;
+    }
   }
 
   &__slide-display {
@@ -26,6 +36,10 @@ $arrow: 2px solid #ffffff;
 
     .slide-current {
       font-weight: bold;
+    }
+
+    @include mobile-breakpoint {
+      padding: 0 20px;
     }
   }
 
@@ -50,6 +64,10 @@ $arrow: 2px solid #ffffff;
       transform: translate(-50%, -50%) rotate(45deg);
       left: 50%;
       top: 50%;
+    }
+
+    @include mobile-breakpoint {
+      display: none;
     }
   }
 
