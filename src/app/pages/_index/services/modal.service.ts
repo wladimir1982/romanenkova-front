@@ -5,6 +5,7 @@ import IPage from "../../../interfaces/iPage";
 import {IModalAppointment} from "../../../interfaces/iModalAppointment";
 import {Subject} from "rxjs/index";
 import {IModalEvent} from "../../../interfaces/iModalEvent";
+import {logger} from "codelyzer/util/logger";
 
 @Injectable({
   providedIn: 'root'
@@ -30,11 +31,11 @@ export class ModalService {
 
   }
 
-  public openModal<T = any>(tpl: TemplateRef<T>, ctx: T) {
+  public openModal(tpl: TemplateRef<any>, ctx: any) {
     this._modalEvent.next({type: 'open', success: true, template: tpl, context: ctx});
   }
 
-  public closeModal<T = any>(type: 'dismiss' | 'success', data: T) {
+  public closeModal(type: 'dismiss' | 'success', data: any) {
     this._modalEvent.next({type, success: type === 'success', resolve: data});
   }
 }

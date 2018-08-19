@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Renderer2, TemplateRef} from '@angular/core';
 import {ModalService} from "../../services/modal.service";
 import {IModalEvent} from "../../../../interfaces/iModalEvent";
 import {filter} from "rxjs/internal/operators";
@@ -9,17 +9,27 @@ import {filter} from "rxjs/internal/operators";
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
+  isModalOpen: boolean;
+  template: TemplateRef<any>;
+  context: any;
 
-  constructor(private modalService: ModalService) {
+  constructor(private modalService: ModalService, private renderer: Renderer2) {
+  }
+
+  closeModal(status: 'dismiss' | 'success', resolve: any) {
+    this.modalService.closeModal(status, resolve);
+    this.isModalOpen = false;
   }
 
   ngOnInit() {
     this.modalService.modalEvent.pipe(
       filter((modalEvent: IModalEvent): boolean => modalEvent.type === 'open')
-    )
-      .subscribe((data: IModalEvent): void => {
-        console.log(data);
-      })
+    ).subscribe((data: IModalEvent): void => {
+      this.isModalOpen = true;
+      this.template = data.template;
+      this.context = data.context;
+      this.renderer.addClass(document.body, 'modal-overlay');
+    })
   }
 
 }

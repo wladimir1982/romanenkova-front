@@ -2,6 +2,18 @@
   {{text}}
 </button>
 
-<ng-template #modalAppointment>
-  <div>modal works</div>
+<ng-template #modalAppointment let-modalData="modalData">
+  <h3>{{modalData.header}}</h3>
+  <app-input></app-input>
+  <app-input></app-input>
+  <app-input></app-input>
+  <div class="datetime">
+    <app-input></app-input>
+    <app-input></app-input>
+  </div>
+  <app-input></app-input>
+  <app-input></app-input>
+  <app-checkbox></app-checkbox>
+  <button></button>
+  {{modalData.explanation}}
 </ng-template>

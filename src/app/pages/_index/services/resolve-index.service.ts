@@ -25,7 +25,7 @@ export class ResolveIndexService {
   public name: string;
 
   resolve(route: ActivatedRouteSnapshot): Observable<IIndexPageData> {
-    return this.httpClient.get<Array<IPage<IContact | INavigationItem | IModalAppointment>>>(environment.api + 'interface', {params: {lang: route.params.lang, id: ['contacts', 'nav', '[modal] appointment']}})
+    return this.httpClient.get<Array<IPage<IContact | INavigationItem > | IModalAppointment>>(environment.api + 'interface', {params: {lang: route.params.lang, id: ['contacts', 'nav', '[modal] appointment']}})
       .pipe(map((data: Array<IPage<IContact | INavigationItem | IModalAppointment>>): IIndexPageData => {
         const contacts: IPage<IContact> = data.find((page: IPage<IContact>): boolean => page.entityId === 'contacts') as IPage<IContact>;
         const header: IPage<INavigationItem> = data.find((page: IPage<INavigationItem>): boolean => page.entityId === 'nav') as IPage<INavigationItem>;

@@ -75,6 +75,10 @@ html, body {
       font-weight: 700;
     }
   }
+
+  &.modal-overlay {
+    overflow: hidden;
+  }
 }
 
 * {

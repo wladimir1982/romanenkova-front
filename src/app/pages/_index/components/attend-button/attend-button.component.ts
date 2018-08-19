@@ -1,5 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef} from '@angular/core';
 import {ModalService} from "../../services/modal.service";
+import {IModalAppointment} from "../../../../interfaces/iModalAppointment";
+import IPage from "../../../../interfaces/iPage";
 
 @Component({
   selector: 'app-attend-button',
@@ -10,12 +12,18 @@ import {ModalService} from "../../services/modal.service";
 export class AttendButtonComponent implements OnInit {
   @Input() public text: string;
 
+  public modalAppointment: IPage<IModalAppointment>;
+
   constructor(private modalService: ModalService) { }
 
   ngOnInit() {
+    this.modalAppointment = this.modalService.modalAppointment;
+    console.log(this.modalAppointment);
   }
 
-  openModal<T>(tpl: TemplateRef<T>, ctx: T) {
-    this.modalService.openModal(tpl, ctx);
+  openModal(tpl: TemplateRef<any>) {
+    this.modalService.openModal(tpl, this.modalAppointment);
   }
+
+  onCloseModal() {}
 }
