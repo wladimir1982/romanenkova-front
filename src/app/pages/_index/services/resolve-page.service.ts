@@ -10,12 +10,12 @@ import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class ResolvePageService implements Resolve<IPage> {
-  resolve(route: ActivatedRouteSnapshot): Observable<IPage> {
+export class ResolvePageService implements Resolve<IPage<any>> {
+  resolve(route: ActivatedRouteSnapshot): Observable<IPage<any>> {
     const lang = localStorage.getItem('lang');
     if (route.data.pageid) {
-      return this.httpClient.get<IPage>(environment.api + 'interface', {params: {lang, id: route.data.pageid}})
-        .pipe(map((res: IPage): IPage => ({...res, name: this.indexService.name})));
+      return this.httpClient.get<IPage<any>>(environment.api + 'interface', {params: {lang, id: route.data.pageid}})
+        .pipe(map((res: IPage<any>): IPage<any> => ({...res, name: this.indexService.name})));
     }
 
     return null;

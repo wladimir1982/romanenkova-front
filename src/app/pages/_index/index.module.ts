@@ -13,6 +13,7 @@ import { NavigationComponent } from './components/header/navigation/navigation.c
 import { SocialComponent } from './components/header/social/social.component';
 import { LanguageSelectorComponent } from './components/header/language-selector/language-selector.component';
 import {FormsModule} from '@angular/forms';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   imports: [
@@ -68,6 +69,7 @@ import {FormsModule} from '@angular/forms';
     NavigationComponent,
     SocialComponent,
     LanguageSelectorComponent,
+    ModalComponent,
   ],
   exports: []
 })

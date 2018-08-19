@@ -3,6 +3,9 @@ import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from '@angular/route
 import {INavigationItem} from '../../../../interfaces/iNavigation';
 import {filter} from 'rxjs/internal/operators';
 import IPage from '../../../../interfaces/iPage';
+import {IContact} from "../../../../interfaces/iContact";
+import {IModalAppointment} from "../../../../interfaces/iModalAppointment";
+import {ModalService} from "../../services/modal.service";
 
 @Component({
   selector: 'app-index',
@@ -16,10 +19,11 @@ export class IndexComponent implements OnInit {
   public isRoot: boolean;
   public header: string;
   public attend: string;
-  public footer: IPage;
+  public footer: IPage<IContact>;
   public name: [string, string];
+  public modalAppointment: IPage<IModalAppointment>;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private modalService: ModalService) {
     router.events
       .pipe(filter((e: RouterEvent) => e instanceof NavigationEnd))
       .subscribe((e: NavigationEnd): void => {
@@ -35,5 +39,6 @@ export class IndexComponent implements OnInit {
     this.footer = this.route.snapshot['_resolvedData'].headerData.contacts;
     this.attend = this.route.snapshot['_resolvedData'].headerData.buttonText;
     this.name = this.route.snapshot.data.headerData.name;
+    this.modalService.modalAppointment = this.route.snapshot.data.headerData.modalAppointment;
   }
 }

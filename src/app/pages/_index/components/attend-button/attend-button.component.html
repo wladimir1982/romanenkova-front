@@ -1,3 +1,7 @@
-<button class="attend-button accent">
+<button class="attend-button accent" (click)="openModal(modalAppointment, {})">
   {{text}}
 </button>
+
+<ng-template #modalAppointment>
+  <div>modal works</div>
+</ng-template>

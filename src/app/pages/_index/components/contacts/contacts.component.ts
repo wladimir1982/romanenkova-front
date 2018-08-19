@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import IPage from "../../../../interfaces/iPage";
+import {IContact} from "../../../../interfaces/iContact";
 
 @Component({
   selector: 'app-contacts',
@@ -7,7 +8,7 @@ import IPage from "../../../../interfaces/iPage";
   styleUrls: ['./contacts.component.scss']
 })
 export class ContactsComponent implements OnInit {
-  @Input() data: IPage;
+  @Input() data: IPage<IContact>;
   @Input() attend: string;
 
   constructor() { }
