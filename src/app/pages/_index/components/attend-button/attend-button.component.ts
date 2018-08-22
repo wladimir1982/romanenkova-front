@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef} from '@angular/core';
-import {ModalService} from "../../services/modal.service";
-import {IModalAppointment} from "../../../../interfaces/iModalAppointment";
-import IPage from "../../../../interfaces/iPage";
+import {ModalService} from '../../services/modal.service';
+import {IModalAppointment} from '../../../../interfaces/iModalAppointment';
+import IPage from '../../../../interfaces/iPage';
 
 @Component({
   selector: 'app-attend-button',

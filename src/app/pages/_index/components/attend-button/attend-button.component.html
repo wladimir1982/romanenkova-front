@@ -1,4 +1,4 @@
-<button class="attend-button accent" (click)="openModal(modalAppointment, {})">
+<button class="attend-button accent" (click)="openModal(modalAppointment)">
   {{text}}
 </button>
 
@@ -8,12 +8,12 @@
   <app-input></app-input>
   <app-input></app-input>
   <div class="datetime">
-    <app-input></app-input>
-    <app-input></app-input>
+    <app-date></app-date>
+    <app-time></app-time>
   </div>
-  <app-input></app-input>
-  <app-input></app-input>
+  <app-select></app-select>
+  <app-textarea></app-textarea>
   <app-checkbox></app-checkbox>
-  <button></button>
-  {{modalData.explanation}}
+  <button>{{modalData.pageData.submit}}</button>
+  {{modalData.pageData.explanation}}
 </ng-template>
