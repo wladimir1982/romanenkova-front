@@ -18,7 +18,6 @@ export class ModalComponent implements OnInit {
 
   public closeModal(status: 'dismiss' | 'success', resolve: any): void {
     this.modalService.closeModal(status, resolve);
-    this.isModalOpen = false;
   }
 
   public stopPropagation($event: Event): void {
@@ -34,6 +33,12 @@ export class ModalComponent implements OnInit {
       this.context = data.context;
       this.renderer.addClass(document.body, 'modal-overlay');
     });
-  }
 
+    this.modalService.modalEvent.pipe(
+      filter((modalEvent: IModalEvent): boolean => modalEvent.type === 'dismiss' || modalEvent.type === 'success')
+    ).subscribe((data: IModalEvent): void => {
+      this.isModalOpen = false;
+      this.renderer.removeClass(document.body, 'modal-overlay');
+    });
+  }
 }

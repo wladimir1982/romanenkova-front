@@ -2,18 +2,22 @@
   {{text}}
 </button>
 
-<ng-template #modalAppointment let-modalData="modalData">
-  <h3>{{modalData.header}}</h3>
-  <app-input></app-input>
-  <app-input></app-input>
-  <app-input></app-input>
-  <div class="datetime">
-    <app-date></app-date>
-    <app-time></app-time>
-  </div>
-  <app-select></app-select>
-  <app-textarea></app-textarea>
-  <app-checkbox></app-checkbox>
-  <button>{{modalData.pageData.submit}}</button>
-  {{modalData.pageData.explanation}}
+<ng-template #modalAppointment let-modalData="modalData" let-model2="model">
+  <form (ngSubmit)="submit(appointmentForm.value)" #appointmentForm="ngForm">
+    <h3>{{modalData.header}}</h3>
+    <app-input [label]="modalData.pageData.name" type="text" [(ngModel)]="model.name" name="name"></app-input>
+    <app-input [label]="modalData.pageData.phone" type="tel" [(ngModel)]="model.phone" name="phone"></app-input>
+    <app-input [label]="modalData.pageData.email" type="email" [(ngModel)]="model.email" name="email"></app-input>
+    <div class="datetime">
+      <app-input class="date" [label]="modalData.pageData.date" type="text" [(ngModel)]="model.date" name="date"></app-input>
+      <app-input class="time" [label]="modalData.pageData.time" type="text" [(ngModel)]="model.time" name="time"></app-input>
+    </div>
+    <app-input [label]="modalData.pageData.service" type="text" [(ngModel)]="model.service" name="service"></app-input>
+    <app-textarea [label]="modalData.pageData.message" type="text" [(ngModel)]="model.message" name="message"></app-textarea>
+    <app-checkbox></app-checkbox>
+    <button class="submit-button" type="submit">{{modalData.pageData.submit}}</button>
+    <div class="explanation">
+      {{modalData.pageData.explanation}}
+    </div>
+  </form>
 </ng-template>

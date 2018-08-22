@@ -1,3 +1,10 @@
-<p>
-  input works!
-</p>
+<div class="input-wrapper">
+  <label class="input-label">
+    <input class="input"
+           [type]="type"
+           [(ngModel)]="value"
+           [ngModelOptions]="{standalone: true}"
+           (ngModelChange)="writeValue($event)"/>
+    <div class="input-text" [class.top]="value && value.length">{{label}}</div>
+  </label>
+</div>

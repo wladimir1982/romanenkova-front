@@ -1,0 +1,60 @@
+@import './../../styles/variables';
+@import './../../styles/mixins';
+
+.input {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  border: none;
+  border-bottom: 1px solid;
+  border-bottom-color: #000000;
+  font-size: 1rem;
+
+  &:focus {
+    & + .input-text {
+      font-size: 10px;
+      transform: translateY(-100%);
+      top: 3px;
+      transition: .5s all ease;
+    }
+  }
+
+  &-wrapper {
+    display: block;
+    padding-top: 20px;
+  }
+
+  &-label {
+    display: block;
+    position: relative;
+
+    &:hover {
+      .input {
+        border-bottom-color: $color-text-accent;
+        color: $color-text-accent;
+
+        &-text {
+          color: $color-text-accent;
+        }
+      }
+    }
+  }
+
+  &-text {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    font-size: 1rem;
+    transition: .5s all ease;
+
+    &.top {
+      font-size: 10px;
+      transform: translateY(-100%);
+      top: 3px;
+    }
+  }
+}
+
+textarea {
+  resize: vertical;
+}

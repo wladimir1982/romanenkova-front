@@ -28,7 +28,6 @@ export class ModalService {
   }
 
   constructor(private router: Router, private route: ActivatedRoute) {
-
   }
 
   public openModal(tpl: TemplateRef<any>, ctx: any) {

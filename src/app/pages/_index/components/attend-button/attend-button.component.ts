@@ -2,6 +2,8 @@ import {ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef} from '@a
 import {ModalService} from '../../services/modal.service';
 import {IModalAppointment} from '../../../../interfaces/iModalAppointment';
 import IPage from '../../../../interfaces/iPage';
+import {IModalEvent} from "../../../../interfaces/iModalEvent";
+import {filter} from "rxjs/internal/operators";
 
 @Component({
   selector: 'app-attend-button',
@@ -13,8 +15,17 @@ export class AttendButtonComponent implements OnInit {
   @Input() public text: string;
 
   public modalAppointment: IPage<IModalAppointment>;
+  public model: any = {
+    name: '',
+    phone: '',
+    email: '',
+    date: '',
+    time: '',
+    message: ''
+  };
 
-  constructor(private modalService: ModalService) { }
+  constructor(private modalService: ModalService) {
+  }
 
   ngOnInit() {
     this.modalAppointment = this.modalService.modalAppointment;
@@ -25,5 +36,15 @@ export class AttendButtonComponent implements OnInit {
     this.modalService.openModal(tpl, this.modalAppointment);
   }
 
-  onCloseModal() {}
+  submit(e) {
+    console.log(e);
+  }
+
+  onCloseModal() {
+    this.modalService.modalEvent.pipe(
+      filter((event: IModalEvent): boolean => event.type === 'success' || event.type === "dismiss")
+    ).subscribe((event: IModalEvent) => {
+      console.log(event);
+    })
+  }
 }

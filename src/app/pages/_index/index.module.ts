@@ -22,6 +22,7 @@ import {ComponentsModule} from '../../components/components.module';
     FormsModule,
     ClickOutsideModule,
     ComponentsModule,
+    FormsModule,
     RouterModule.forChild([
       {
         path: 'about',
