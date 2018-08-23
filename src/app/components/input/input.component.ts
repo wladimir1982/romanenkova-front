@@ -16,11 +16,11 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() label: string;
   @Input() type: string;
+  @Input() icon?: string;
 
   private isDisabled: boolean;
   private onChange: (v: string) => void = () => {};
   private onTouch: () => void;
-
   public value: string;
 
   public writeValue(value: string): void {

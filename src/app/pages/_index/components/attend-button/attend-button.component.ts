@@ -8,6 +8,8 @@ import {FormBuilder, FormGroup, FormControl, Validators} from "@angular/forms";
 import {ResolveIndexService} from "../../services/resolve-index.service";
 import {ResolveLanguageService} from "../../../../resolve-language.service";
 import {LanguageGuardService} from "../../../../language-guard.service";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-attend-button',
@@ -24,7 +26,7 @@ export class AttendButtonComponent implements OnInit {
   public lang: string;
   private isCaptchaResolved: boolean;
 
-  constructor(private modalService: ModalService, private formBuilder: FormBuilder, private languageGuardService: LanguageGuardService) {
+  constructor(private modalService: ModalService, private formBuilder: FormBuilder, private languageGuardService: LanguageGuardService, private httpClient: HttpClient) {
   }
 
   ngOnInit() {
@@ -38,7 +40,7 @@ export class AttendButtonComponent implements OnInit {
       time: new FormControl(),
       message: new FormControl(),
       service: new FormControl(),
-      recaptcha: new FormControl(),
+      recaptcha:  new FormControl('', Validators.required)
     });
     this.lang = this.languageGuardService.selectedLang;
   }
@@ -48,7 +50,8 @@ export class AttendButtonComponent implements OnInit {
   }
 
   submit(e) {
-    console.log(e);
+    const formValue = e.value;
+    this.httpClient.post(environment.api + 'appointment', formValue).subscribe();
   }
 
   onCloseModal() {
@@ -61,10 +64,6 @@ export class AttendButtonComponent implements OnInit {
 
   handleExpire() {
     this.isCaptchaResolved = false;
-  }
-
-  handleLoad() {
-
   }
 
   handleSuccess($event) {

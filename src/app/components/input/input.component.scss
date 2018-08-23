@@ -33,7 +33,7 @@
         border-bottom-color: $color-text-accent;
         color: $color-text-accent;
 
-        &-text {
+        &-text, &-icon {
           color: $color-text-accent;
         }
       }
@@ -52,5 +52,12 @@
       transform: translateY(-100%);
       top: 3px;
     }
+  }
+
+  &-icon {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    right: 0;
   }
 }

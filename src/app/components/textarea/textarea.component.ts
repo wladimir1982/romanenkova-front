@@ -29,7 +29,9 @@ export class TextareaComponent implements OnInit, ControlValueAccessor {
     this.value = value;
     this.onChange(value);
     this.rows = value && value.split(/\r\n|\r|\n/).length;
-    if (value === '') {
+    if (value) {
+      this.rows = value.split(/\r\n|\r|\n/).length;
+    } else {
       this.rows = 1;
     }
   }

@@ -6,5 +6,6 @@
            [ngModelOptions]="{standalone: true}"
            (ngModelChange)="writeValue($event)"/>
     <div class="input-text" [class.top]="value && value.length">{{label}}</div>
+    <span class="input-icon" [ngClass]="icon" *ngIf="icon"></span>
   </label>
 </div>
