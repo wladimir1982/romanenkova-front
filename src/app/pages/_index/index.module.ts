@@ -12,9 +12,10 @@ import {ClickOutsideModule} from 'ng4-click-outside';
 import { NavigationComponent } from './components/header/navigation/navigation.component';
 import { SocialComponent } from './components/header/social/social.component';
 import { LanguageSelectorComponent } from './components/header/language-selector/language-selector.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ModalComponent } from './components/modal/modal.component';
 import {ComponentsModule} from '../../components/components.module';
+import {NgxCaptchaModule} from "ngx-captcha";
 
 @NgModule({
   imports: [
@@ -60,7 +61,11 @@ import {ComponentsModule} from '../../components/components.module';
         data: {pageid: 'main'},
         resolve: {pageData: ResolvePageService}
       },
-    ])
+    ]),
+    NgxCaptchaModule.forRoot({
+      reCaptcha2SiteKey: '6Lc2zmsUAAAAAA0vgv4qoXcREi9LkfWwn1i0Jyil'
+    }),
+    ReactiveFormsModule
   ],
   declarations: [
     IndexComponent,

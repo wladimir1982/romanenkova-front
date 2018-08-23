@@ -23,6 +23,7 @@
     "@angular/router": "^6.0.3",
     "core-js": "^2.5.4",
     "ng4-click-outside": "^1.0.1",
+    "ngx-captcha": "^4.0.1",
     "ngx-swiper-wrapper": "^6.4.0",
     "rxjs": "^6.0.0",
     "web-animations-js": "^2.3.1",
