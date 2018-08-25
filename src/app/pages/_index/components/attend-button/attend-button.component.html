@@ -15,7 +15,7 @@
     <app-input [label]="modalData.pageData.service" type="text" formControlName="service" icon="icon-small-arrow-down"></app-input>
     <app-textarea [label]="modalData.pageData.message" type="text" formControlName="message"></app-textarea>
     <div class="recaptcha">
-      <ngx-recaptcha2 formControlName="recaptcha" [hl]="lang" theme="light" (expire)="handleExpire()" (success)="handleSuccess($event)"></ngx-recaptcha2>
+      <ngx-recaptcha2 #captchaElement formControlName="recaptcha" [hl]="lang" theme="light" (expire)="handleExpire()" (success)="handleSuccess($event)"></ngx-recaptcha2>
     </div>
     <button class="submit-button" type="submit" [disabled]="appointmentForm.invalid">{{modalData.pageData.submit}}</button>
     <div class="explanation">

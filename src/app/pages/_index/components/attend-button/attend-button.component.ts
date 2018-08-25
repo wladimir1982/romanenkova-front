@@ -1,4 +1,7 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef} from '@angular/core';
+import {
+  ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit, TemplateRef,
+  ViewChild
+} from '@angular/core';
 import {ModalService} from '../../services/modal.service';
 import {IModalAppointment} from '../../../../interfaces/iModalAppointment';
 import IPage from '../../../../interfaces/iPage';
@@ -20,13 +23,14 @@ import {environment} from "../../../../../environments/environment";
 })
 export class AttendButtonComponent implements OnInit {
   @Input() public text: string;
+  @ViewChild('captchaElement') private captchaElement: ElementRef;
 
   public formGroup: FormGroup;
   public modalAppointment: IPage<IModalAppointment>;
   public lang: string;
   private isCaptchaResolved: boolean;
 
-  constructor(private modalService: ModalService, private formBuilder: FormBuilder, private languageGuardService: LanguageGuardService, private httpClient: HttpClient) {
+  constructor(private modalService: ModalService, private formBuilder: FormBuilder, private languageGuardService: LanguageGuardService, private httpClient: HttpClient, private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -51,7 +55,9 @@ export class AttendButtonComponent implements OnInit {
 
   submit(e) {
     const formValue = e.value;
-    this.httpClient.post(environment.api + 'appointment', formValue).subscribe();
+    this.httpClient.post(environment.api + 'appointment', formValue).subscribe(() => {
+      window.location.reload();
+    });
   }
 
   onCloseModal() {
