@@ -84,6 +84,16 @@
   margin-top: 11px;
   line-height: 16px;
   font-size: 14px;
+
+  &.oneof-field-err {
+    margin-top: 0;
+    color: $color-warning;
+  }
+
+  &.uniq-field-err {
+    margin-top: 0;
+    color: $color-error
+  }
 }
 
 .header {

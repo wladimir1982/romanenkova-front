@@ -2,6 +2,7 @@ import {TemplateRef} from "@angular/core";
 import {Observable} from "rxjs/index";
 
 export interface IModalEvent<T = any> {
+  name: string;
   success: boolean;
   type: 'open' | 'dismiss' | 'success';
   template?: TemplateRef<T>;

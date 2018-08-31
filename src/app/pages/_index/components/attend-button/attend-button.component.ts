@@ -1,18 +1,15 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit, TemplateRef,
+  ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, TemplateRef,
   ViewChild
 } from '@angular/core';
 import {ModalService} from '../../services/modal.service';
 import {IModalAppointment} from '../../../../interfaces/iModalAppointment';
 import IPage from '../../../../interfaces/iPage';
-import {IModalEvent} from "../../../../interfaces/iModalEvent";
-import {filter} from "rxjs/internal/operators";
-import {FormBuilder, FormGroup, FormControl, Validators} from "@angular/forms";
-import {ResolveIndexService} from "../../services/resolve-index.service";
-import {ResolveLanguageService} from "../../../../resolve-language.service";
+import {FormBuilder, FormGroup, FormControl, Validators, FormGroupDirective} from "@angular/forms";
 import {LanguageGuardService} from "../../../../language-guard.service";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
+import {ReCaptcha2Component} from "ngx-captcha";
 
 @Component({
   selector: 'app-attend-button',
@@ -23,19 +20,24 @@ import {environment} from "../../../../../environments/environment";
 })
 export class AttendButtonComponent implements OnInit {
   @Input() public text: string;
-  @ViewChild('captchaElement') private captchaElement: ElementRef;
+  @ViewChild('modalAppointment') private modalAppointmentRef: TemplateRef<any>;
+  @ViewChild('modalAppointmentMessage') private modalAppointmentMessageRef: TemplateRef<any>;
 
   public formGroup: FormGroup;
   public modalAppointment: IPage<IModalAppointment>;
   public lang: string;
+  public errorObj: any = {};
   private isCaptchaResolved: boolean;
 
-  constructor(private modalService: ModalService, private formBuilder: FormBuilder, private languageGuardService: LanguageGuardService, private httpClient: HttpClient, private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private modalService: ModalService,
+              private formBuilder: FormBuilder,
+              private languageGuardService: LanguageGuardService,
+              private httpClient: HttpClient,
+              private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
     this.modalAppointment = this.modalService.modalAppointment;
-    console.log(this.modalAppointment);
     this.formGroup = this.formBuilder.group({
       name: new FormControl(),
       phone: new FormControl(),
@@ -50,22 +52,25 @@ export class AttendButtonComponent implements OnInit {
   }
 
   openModal(tpl: TemplateRef<any>) {
-    this.modalService.openModal(tpl, this.modalAppointment);
+    this.modalService.openModal('appointment', tpl, this.modalAppointment);
   }
 
-  submit(e) {
-    const formValue = e.value;
-    this.httpClient.post(environment.api + 'appointment', formValue).subscribe(() => {
-      window.location.reload();
+  submit(e: FormGroupDirective, captchaElement: ReCaptcha2Component) {
+    this.errorObj = {};
+    this.httpClient.post(environment.api + 'appointment', e.value).subscribe((data: any) => {
+      this.modalService.closeModal('appointment', 'success', e.value);
+      this.modalService.openModal('appointment', this.modalAppointmentMessageRef, {header: data.h, text: data.m});
+      captchaElement.resetCaptcha();
+      captchaElement.reloadCaptcha();
+      this.changeDetectorRef.markForCheck();
+    }, (err: any) => {
+      console.log(err);
+      captchaElement.resetCaptcha();
+      captchaElement.reloadCaptcha();
+      this.errorObj.name = err.error.name;
+      this.errorObj.contact = err.error.contact;
+      this.changeDetectorRef.markForCheck();
     });
-  }
-
-  onCloseModal() {
-    this.modalService.modalEvent.pipe(
-      filter((event: IModalEvent): boolean => event.type === 'success' || event.type === "dismiss")
-    ).subscribe((event: IModalEvent) => {
-      console.log(event);
-    })
   }
 
   handleExpire() {
@@ -73,7 +78,6 @@ export class AttendButtonComponent implements OnInit {
   }
 
   handleSuccess($event) {
-    console.log($event);
     this.isCaptchaResolved = true;
   }
 }

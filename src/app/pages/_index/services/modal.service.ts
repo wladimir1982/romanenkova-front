@@ -27,14 +27,11 @@ export class ModalService {
     return this._modalEvent.asObservable();
   }
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  public openModal(name: string, tpl: TemplateRef<any>, ctx: any) {
+    this._modalEvent.next({name, type: 'open', success: true, template: tpl, context: ctx});
   }
 
-  public openModal(tpl: TemplateRef<any>, ctx: any) {
-    this._modalEvent.next({type: 'open', success: true, template: tpl, context: ctx});
-  }
-
-  public closeModal(type: 'dismiss' | 'success', data: any) {
-    this._modalEvent.next({type, success: type === 'success', resolve: data});
+  public closeModal(name: string, type: 'dismiss' | 'success', data: any) {
+    this._modalEvent.next({name, type, success: type === 'success', resolve: data});
   }
 }

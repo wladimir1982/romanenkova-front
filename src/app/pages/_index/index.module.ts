@@ -77,7 +77,7 @@ import {NgxCaptchaModule} from "ngx-captcha";
     NavigationComponent,
     SocialComponent,
     LanguageSelectorComponent,
-    ModalComponent,
+    ModalComponent
   ],
   exports: []
 })

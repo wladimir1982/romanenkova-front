@@ -2,18 +2,22 @@
   {{text}}
 </button>
 
-<ng-template #modalAppointment let-modalData="modalData" let-model2="model">
-  <form (ngSubmit)="submit(appointmentForm)" #appointmentForm="ngForm" [formGroup]="formGroup">
+<ng-template #modalAppointment let-modalData="modalData">
+  <form (ngSubmit)="submit(appointmentForm, captchaElement)" #appointmentForm="ngForm" [formGroup]="formGroup">
     <h3 class="header">{{modalData.header}}</h3>
     <app-input [label]="modalData.pageData.name" type="text" formControlName="name"></app-input>
+    <div class="explanation uniq-field-err">{{errorObj.name}}</div>
     <app-input [label]="modalData.pageData.phone" type="tel" formControlName="phone"></app-input>
+    <div class="explanation oneof-field-err">{{errorObj.contact}}</div>
     <app-input [label]="modalData.pageData.email" type="email" formControlName="email"></app-input>
+    <div class="explanation oneof-field-err">{{errorObj.contact}}</div>
     <div class="datetime">
       <app-input class="date" [label]="modalData.pageData.date" type="text" formControlName="date" icon="icon-calendar"></app-input>
       <app-input class="time" [label]="modalData.pageData.time" type="text" formControlName="time" icon="icon-clock"></app-input>
     </div>
     <app-input [label]="modalData.pageData.service" type="text" formControlName="service" icon="icon-small-arrow-down"></app-input>
     <app-textarea [label]="modalData.pageData.message" type="text" formControlName="message"></app-textarea>
+    <div class="explanation oneof-field-err">{{errorObj.contact}}</div>
     <div class="recaptcha">
       <ngx-recaptcha2 #captchaElement formControlName="recaptcha" [hl]="lang" theme="light" (expire)="handleExpire()" (success)="handleSuccess($event)"></ngx-recaptcha2>
     </div>
@@ -22,4 +26,11 @@
       {{modalData.pageData.explanation}}
     </div>
   </form>
+</ng-template>
+
+<ng-template #modalAppointmentMessage let-modalData="modalData">
+  <div class="message-wrapper">
+    <h3>{{modalData.header}}</h3>
+    <p>{{modalData.text}}</p>
+  </div>
 </ng-template>

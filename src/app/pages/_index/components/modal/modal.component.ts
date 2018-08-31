@@ -10,6 +10,7 @@ import {filter} from 'rxjs/internal/operators';
 })
 export class ModalComponent implements OnInit {
   isModalOpen: boolean;
+  openModalName: string;
   template: TemplateRef<any>;
   context: any;
 
@@ -17,7 +18,7 @@ export class ModalComponent implements OnInit {
   }
 
   public closeModal(status: 'dismiss' | 'success', resolve: any): void {
-    this.modalService.closeModal(status, resolve);
+    this.modalService.closeModal('appointment', status, resolve);
   }
 
   public stopPropagation($event: Event): void {
@@ -29,6 +30,7 @@ export class ModalComponent implements OnInit {
       filter((modalEvent: IModalEvent): boolean => modalEvent.type === 'open')
     ).subscribe((data: IModalEvent): void => {
       this.isModalOpen = true;
+      this.openModalName = data.name;
       this.template = data.template;
       this.context = data.context;
       this.renderer.addClass(document.body, 'modal-overlay');
@@ -38,6 +40,7 @@ export class ModalComponent implements OnInit {
       filter((modalEvent: IModalEvent): boolean => modalEvent.type === 'dismiss' || modalEvent.type === 'success')
     ).subscribe((data: IModalEvent): void => {
       this.isModalOpen = false;
+      this.openModalName = void 0;
       this.renderer.removeClass(document.body, 'modal-overlay');
     });
   }
