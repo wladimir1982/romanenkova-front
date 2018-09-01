@@ -1,0 +1,15 @@
+<div class="input-wrapper">
+  <label class="input-label">
+    <input class=input
+           #dp="ngx-mydatepicker"
+           (clickOutside)="toggleCalendar(dp, false)"
+           ngx-mydatepicker
+           [ngModel]="value"
+           (ngModelChange)="writeValue($event)"
+           [ngModelOptions]="{standalone: true}"
+           [options]="dpOptions"
+           (input)="input($event)"/>
+    <div class="input-text" [class.top]="value || textValue">{{label}}</div>
+    <span class="input-icon icon-calendar" (click)="dp.toggleCalendar()"></span>
+  </label>
+</div>

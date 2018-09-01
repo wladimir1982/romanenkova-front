@@ -10,6 +10,7 @@ import {LanguageGuardService} from "../../../../language-guard.service";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
 import {ReCaptcha2Component} from "ngx-captcha";
+import {INgxMyDpOptions} from "ngx-mydatepicker";
 
 @Component({
   selector: 'app-attend-button',
@@ -28,6 +29,7 @@ export class AttendButtonComponent implements OnInit {
   public lang: string;
   public errorObj: any = {};
   private isCaptchaResolved: boolean;
+  datePickerOptions: INgxMyDpOptions;
 
   constructor(private modalService: ModalService,
               private formBuilder: FormBuilder,

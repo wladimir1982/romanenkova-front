@@ -1,5 +1,6 @@
-import {Component, forwardRef, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input, OnInit} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {INgxMyDpOptions, NgxMyDatePickerConfig, NgxMyDatePickerDirective} from "ngx-mydatepicker";
 
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -11,11 +12,13 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   selector: 'app-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
-  providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR, NgxMyDatePickerConfig]
 })
-export class InputComponent implements OnInit, ControlValueAccessor {
+export class InputComponent implements ControlValueAccessor {
   @Input() label: string;
   @Input() type: string;
+  @Input() options: any;
   @Input() icon?: string;
 
   private isDisabled: boolean;
@@ -38,11 +41,5 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   public setDisabledState(state: boolean): void {
     this.isDisabled = state;
-  }
-
-  constructor() {
-  }
-
-  public ngOnInit(): void {
   }
 }

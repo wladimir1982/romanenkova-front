@@ -2,6 +2,7 @@ import {Component, OnInit, Renderer2, TemplateRef} from '@angular/core';
 import {ModalService} from '../../services/modal.service';
 import {IModalEvent} from '../../../../interfaces/iModalEvent';
 import {filter} from 'rxjs/internal/operators';
+import {Subject} from "rxjs/index";
 
 @Component({
   selector: 'app-modal',
@@ -13,6 +14,7 @@ export class ModalComponent implements OnInit {
   openModalName: string;
   template: TemplateRef<any>;
   context: any;
+  events$: Subject<any> = new Subject();
 
   constructor(private modalService: ModalService, private renderer: Renderer2) {
   }
@@ -23,6 +25,7 @@ export class ModalComponent implements OnInit {
 
   public stopPropagation($event: Event): void {
     $event.stopPropagation();
+    this.events$.next($event);
   }
 
   public ngOnInit(): void {
@@ -43,5 +46,9 @@ export class ModalComponent implements OnInit {
       this.openModalName = void 0;
       this.renderer.removeClass(document.body, 'modal-overlay');
     });
+  }
+
+  khui() {
+    console.log('asdsdasd');
   }
 }

@@ -2,7 +2,7 @@
   {{text}}
 </button>
 
-<ng-template #modalAppointment let-modalData="modalData">
+<ng-template #modalAppointment let-modalData="modalData" let-events="events">
   <form (ngSubmit)="submit(appointmentForm, captchaElement)" #appointmentForm="ngForm" [formGroup]="formGroup">
     <h3 class="header">{{modalData.header}}</h3>
     <app-input [label]="modalData.pageData.name" type="text" formControlName="name"></app-input>
@@ -12,7 +12,7 @@
     <app-input [label]="modalData.pageData.email" type="email" formControlName="email"></app-input>
     <div class="explanation oneof-field-err">{{errorObj.contact}}</div>
     <div class="datetime">
-      <app-input class="date" [label]="modalData.pageData.date" type="text" formControlName="date" icon="icon-calendar"></app-input>
+      <app-date-input [options]="{type: 'date'}" class="date" [label]="modalData.pageData.date" type="text" formControlName="date" icon="icon-calendar"></app-date-input>
       <app-input class="time" [label]="modalData.pageData.time" type="text" formControlName="time" icon="icon-clock"></app-input>
     </div>
     <app-input [label]="modalData.pageData.service" type="text" formControlName="service" icon="icon-small-arrow-down"></app-input>
