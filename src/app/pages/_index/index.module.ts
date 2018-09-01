@@ -16,6 +16,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ModalComponent } from './components/modal/modal.component';
 import {ComponentsModule} from '../../components/components.module';
 import {NgxCaptchaModule} from "ngx-captcha";
+import {InterceptorService} from "./services/interceptor.service";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
 
 @NgModule({
   imports: [
@@ -79,7 +81,8 @@ import {NgxCaptchaModule} from "ngx-captcha";
     LanguageSelectorComponent,
     ModalComponent
   ],
-  exports: []
+  exports: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }]
 })
 export class IndexModule {
 }
