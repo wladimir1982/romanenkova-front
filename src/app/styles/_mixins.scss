@@ -22,6 +22,10 @@
   @media (min-width: 1280px) {
     @content;
   }
+
+  @include desktop-sm-breakpoint {
+    @content;
+  }
 }
 
 @mixin placeholder {

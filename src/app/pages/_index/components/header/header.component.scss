@@ -24,7 +24,6 @@
       }
     }
   }
-
 }
 
 .button-wrapper {
@@ -32,12 +31,12 @@
   justify-content: center;
   display: flex;
 
-  @include mobile-breakpoint {
-    width: 85%;
-  }
-
   .button {
     justify-self: center;
+  }
+
+  @include tablet-breakpoint {
+    width: 85%;
   }
 }
 
@@ -52,7 +51,7 @@
     }
   }
 
-  @include mobile-breakpoint {
+  @include tablet-breakpoint {
     width: 85%;
   }
 }
@@ -66,7 +65,7 @@
   z-index: 10;
   position: relative;
 
-  @include mobile-breakpoint {
+  @include tablet-breakpoint {
     position: absolute;
     top: 0;
     left: 0;
@@ -127,7 +126,7 @@
     }
   }
 
-  @include mobile-breakpoint {
+  @include tablet-breakpoint {
     display: flex;
     align-items: center;
     height: 75px;
@@ -148,12 +147,17 @@
   flex-basis: 0;
   flex-grow: 1;
   text-decoration: none;
+  font-size: 14px;
+
+  span {
+    font-size: 18px;
+  }
 
   &, &:hover, &:focus, &:visited {
     text-decoration: none;
   }
 
-  @include mobile-breakpoint {
+  @include tablet-breakpoint {
     &.desktop {
       display: none;
     }
@@ -171,7 +175,7 @@
   left: 50%;
   top: 50%;
 
-  @include mobile-breakpoint {
+  @include tablet-breakpoint {
     position: static;
     transform: translate(0, 0);
   }
@@ -180,7 +184,7 @@
 .close-button {
   display: none;
 
-  @include mobile-breakpoint {
+  @include tablet-breakpoint {
     position: absolute;
     top: 20px;
     right: 20px;

@@ -2,6 +2,7 @@
   <div class="modal-wrapper"></div>
   <div class="modal-container" (click)="closeModal('dismiss', null)">
     <div class="modal-window" (click)="stopPropagation($event)">
+      <div class="modal-close-button" (click)="closeModal('dismiss', null)"></div>
       <ng-container *ngTemplateOutlet="template; context: {modalData: context}"></ng-container>
     </div>
   </div>

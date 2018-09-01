@@ -18,6 +18,7 @@
         color: $color-text-accent;
         transition: .3s color ease;
         white-space: nowrap;
+        font-size: 14px;
 
         &, &:hover, &:focus, &:visited {
           text-decoration: none;
