@@ -65,15 +65,6 @@
   z-index: 10;
   position: relative;
 
-  @include tablet-breakpoint {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #ffffff;
-    display: flex;
-    flex-direction: column;
-  }
-
   @include desktop-breakpoint {
     height: 50px;
     margin: 35px 0;
@@ -87,6 +78,18 @@
       box-shadow: 0 0 50px 0 rgba(0, 0, 0, .1);
       transition: background-color .3s ease .3s,  box-shadow .3s ease .3s;
     }
+  }
+
+  @include tablet-breakpoint {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    margin-top: 0;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 }
 
