@@ -1,0 +1,11 @@
+<div class="block-wrapper">
+  <img class="block-image" [src]="blockData.images[0]" alt="">
+  <div class="block-info-wrapper">
+    <div>{{position}}</div>
+    <h1>{{name}}</h1>
+    <div class="block-info-paragraph">{{mainText}}</div>
+    <div>
+      <a class="block-info-link" routerLink="about">{{blockData.header}}</a>
+    </div>
+  </div>
+</div>

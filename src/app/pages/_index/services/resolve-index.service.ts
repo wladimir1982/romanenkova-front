@@ -32,7 +32,8 @@ export class ResolveIndexService {
         const modalAppointment: IPage<IModalAppointment> = data.find((page: IPage<IModalAppointment>): boolean => page.entityId === '[modal] appointment') as IPage<IModalAppointment>;
         const title: [string, string] = (header.pageData[0] as INavigationItem).name as [string, string];
         const buttonText = (header.pageData[1] as INavigationItem).name as string;
-        const name = ((header.pageData[2] as INavigationItem).name as [string, string]).join(' ');
+        const name = ((header.pageData[2] as INavigationItem).name as [string, string, string]).splice(1).join(' ');
+        const position = ((header.pageData[2] as INavigationItem).name as [string, string, string])[0];
         const navigation = (header.pageData as Array<INavigationItem>).slice(3, 8) as Array<INavigationItem>;
 
         (navigation as Array<INavigationItem>).forEach((navItem: INavigationItem): void => {
@@ -49,6 +50,7 @@ export class ResolveIndexService {
           navigation,
           contacts,
           name,
+          position,
           modalAppointment
         };
       }));

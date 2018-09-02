@@ -18,6 +18,9 @@ import {ComponentsModule} from '../../components/components.module';
 import {NgxCaptchaModule} from "ngx-captcha";
 import {InterceptorService} from "./services/interceptor.service";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { OverviewAboutComponent } from './components/overview-about/overview-about.component';
+import {ResolveMainPageService} from "./services/resolve-main-page.service";
 
 @NgModule({
   imports: [
@@ -61,13 +64,14 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
         path: '',
         component: MainComponent,
         data: {pageid: 'main'},
-        resolve: {pageData: ResolvePageService}
+        resolve: {pageData: ResolvePageService, pageBlocks: ResolveMainPageService}
       },
     ]),
     NgxCaptchaModule.forRoot({
       reCaptcha2SiteKey: '6Lc2zmsUAAAAAA0vgv4qoXcREi9LkfWwn1i0Jyil'
     }),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ScrollToModule.forRoot()
   ],
   declarations: [
     IndexComponent,
@@ -79,7 +83,8 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
     NavigationComponent,
     SocialComponent,
     LanguageSelectorComponent,
-    ModalComponent
+    ModalComponent,
+    OverviewAboutComponent
   ],
   exports: [],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }]

@@ -9,5 +9,6 @@ export interface IIndexPageData {
   buttonText: string;
   contacts: IPage<IContact>;
   name: string;
+  position: string;
   modalAppointment: IPage<IModalAppointment>
 }

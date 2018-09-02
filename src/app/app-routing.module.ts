@@ -13,14 +13,7 @@ const routes: Routes = [
     resolve: {headerData: ResolveIndexService, language: ResolveLanguageService},
     component: IndexComponent,
     outlet: 'primary'
-  }, /*{
-    path: ':lang/!**',
-    loadChildren: './pages/_index/index.module#IndexModule',
-    canActivate: [LanguageGuardService],
-    resolve: {data: ResolveHeaderService, language: ResolveLanguageService},
-    component: IndexComponent,
-    outlet: 'primary'
-  }, */{
+  }, {
     path: '404',
     loadChildren: './pages/_page404/page404.module#Page404Module',
     outlet: 'primary'

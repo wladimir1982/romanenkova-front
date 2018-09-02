@@ -21,7 +21,6 @@ $arrow: 2px solid #ffffff;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background-color: rgba(255, 255, 255, .5);
     z-index: 2;
 
     @include mobile-breakpoint {

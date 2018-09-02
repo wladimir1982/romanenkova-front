@@ -8,4 +8,5 @@ export default interface IPage<T> {
   entityId: TPageId;
   language: TLanguage;
   name?: string;
+  images?: Array<string>;
 }
