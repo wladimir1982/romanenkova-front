@@ -30,6 +30,7 @@ export class AttendButtonComponent implements OnInit {
   public errorObj: any = {};
   private isCaptchaResolved: boolean;
   datePickerOptions: INgxMyDpOptions;
+  public isSubmitting: boolean;
 
   constructor(private modalService: ModalService,
               private formBuilder: FormBuilder,
@@ -59,14 +60,16 @@ export class AttendButtonComponent implements OnInit {
 
   submit(e: FormGroupDirective, captchaElement: ReCaptcha2Component) {
     this.errorObj = {};
+    this.isSubmitting = true;
     this.httpClient.post(environment.api + 'appointment', e.value).subscribe((data: any) => {
+      this.isSubmitting = false;
       this.modalService.closeModal('appointment', 'success', e.value);
       this.modalService.openModal('appointment', this.modalAppointmentMessageRef, {header: data.h, text: data.m});
       captchaElement.resetCaptcha();
       captchaElement.reloadCaptcha();
       this.changeDetectorRef.markForCheck();
     }, (err: any) => {
-      console.log(err);
+      this.isSubmitting = false;
       captchaElement.resetCaptcha();
       captchaElement.reloadCaptcha();
       this.errorObj.name = err.error.name;
