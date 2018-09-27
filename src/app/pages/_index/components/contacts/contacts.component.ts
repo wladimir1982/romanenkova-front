@@ -46,7 +46,7 @@ export class ContactsComponent implements OnInit {
           contact.linkto = `skype:${contact.account}?chat`;
           break;
         case 'email':
-          contact.linkto = `mailto:${this.name}<${contact.account}>`;
+          contact.linkto = `mailto:${contact.account}`;
           break;
         default:
           break;
