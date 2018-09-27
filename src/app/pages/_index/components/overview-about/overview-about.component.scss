@@ -1,14 +1,35 @@
 @import './../../../../styles/variables';
+@import './../../../../styles/mixins';
 
 .block {
   &-wrapper{
     width: 100%;
     display: flex;
     align-items: center;
+    opacity: 0;
+    transform: translateX(-100px);
+    will-change: opacity, transform;
+
+    &.visible {
+      opacity: 1;
+      transform: translateX(0);
+      transition: 1s ease-out opacity, 1s ease-out transform;
+      will-change: opacity, transform;
+    }
+
+    @include mobile-breakpoint {
+      padding: 0 20px;
+      flex-direction: column;
+    }
   }
 
   &-image {
     max-width: 370px;
+
+    @include mobile-breakpoint {
+      max-width: 100%;
+      min-width: 100%;
+    }
   }
 
   &-info {
@@ -16,6 +37,22 @@
       display: flex;
       flex-direction: column;
       margin-left: 100px;
+
+      @include mobile-breakpoint {
+        margin-left: 0;
+      }
+    }
+
+    &-position {
+      @include mobile-breakpoint {
+        margin-top: 15px;
+      }
+    }
+
+    &-name {
+      @include mobile-breakpoint {
+        line-height: 1;
+      }
     }
 
     &-paragraph {

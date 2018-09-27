@@ -15,12 +15,13 @@ import { LanguageSelectorComponent } from './components/header/language-selector
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ModalComponent } from './components/modal/modal.component';
 import {ComponentsModule} from '../../components/components.module';
-import {NgxCaptchaModule} from "ngx-captcha";
-import {InterceptorService} from "./services/interceptor.service";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {NgxCaptchaModule} from 'ngx-captcha';
+import {InterceptorService} from './services/interceptor.service';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { OverviewAboutComponent } from './components/overview-about/overview-about.component';
-import {ResolveMainPageService} from "./services/resolve-main-page.service";
+import {ResolveMainPageService} from './services/resolve-main-page.service';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 
 @NgModule({
   imports: [
@@ -84,7 +85,8 @@ import {ResolveMainPageService} from "./services/resolve-main-page.service";
     SocialComponent,
     LanguageSelectorComponent,
     ModalComponent,
-    OverviewAboutComponent
+    OverviewAboutComponent,
+    SafeHtmlPipe
   ],
   exports: [],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }]

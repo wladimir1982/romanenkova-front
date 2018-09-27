@@ -6,10 +6,24 @@
   justify-content: center;
   width: 100%;
   margin: auto;
+  opacity: 0;
+  transform: translateX(100px);
+  will-change: opacity, transform;
+
+  &.visible {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 1s ease-out opacity, 1s ease-out transform;
+    will-change: opacity, transform;
+  }
 
   &-header {
     text-align: center;
     margin-bottom: 25px;
+
+    @include mobile-breakpoint {
+      margin-bottom: 15px;
+    }
   }
 
   &:before {
@@ -25,6 +39,32 @@
 .contact {
   text-align: center;
   margin-bottom: 25px;
+
+  .icon-viber {
+    display: none;
+    margin-right: 5px;
+  }
+
+  .icon-viber, .icon-telegram {
+    font-size: 1.5rem;
+  }
+
+  @include mobile-breakpoint {
+    .viber-mobile {
+      display: inline;
+    }
+
+    margin-bottom: 15px;
+  }
+
+  @include desktop-breakpoint {
+    .viber-pc {
+      display: inline;
+    }
+    .viber-mobile {
+      display: none;
+    }
+  }
 }
 
 .attend-button {

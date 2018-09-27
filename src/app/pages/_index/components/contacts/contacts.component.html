@@ -1,10 +1,17 @@
-<div class="contacts" id="contacts">
-  <h3 class="contacts-header h1">{{data.header}}</h3>
-  <div class="contact" *ngFor="let contact of data.pageData">
-    <h4 class="contact-name">{{contact.name}}</h4>
-    <span class="contact-account" *ngIf="!contact.li">{{contact.account}}</span>
-  </div>
-  <div class="attend-button">
-    <app-attend-button [text]="attend"></app-attend-button>
-  </div>
+<div class="contacts" id="contacts" #contacts [class.visible]="contactsIsShown">
+  <!--<ng-container *ngIf="contactsIsShown">-->
+    <h3 class="contacts-header h1">{{data.header}}</h3>
+    <div class="contact" *ngFor="let contact of data.pageData">
+      <h4 class="contact-name">{{contact.name}}</h4>
+      <a [href]="contact.linkto | safeHtml" class="contact-account">{{contact.account}}</a>
+      <div class="messengers-wrapper" *ngIf="contact.viberMobile">
+        <a [href]="contact.viberMobile | safeHtml" class="contact-account viber-mobile icon-viber"></a>
+        <a [href]="contact.viberDesktop | safeHtml" class="contact-account viber-pc icon-viber"></a>
+        <a [href]="contact.telegram | safeHtml" class="contact-account icon-telegram"></a>
+      </div>
+    </div>
+    <div class="attend-button">
+      <app-attend-button [text]="attend"></app-attend-button>
+    </div>
+  <!--</ng-container>-->
 </div>

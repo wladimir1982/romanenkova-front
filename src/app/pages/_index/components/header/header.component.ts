@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   @HostListener('window:scroll')
   private listenter(): void {
     const scrollTop = this.document.documentElement.scrollTop;
-    this.isFixed = scrollTop > 35;
+    this.isFixed = !this.isMobile && scrollTop > 35;
     this.isOpen = false;
   }
 

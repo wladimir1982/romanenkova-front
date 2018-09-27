@@ -24,26 +24,30 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-arrow-down:before {
-  content: "\e902";
-}
-
-.icon-facebook:before {
-  content: "\ea90";
-}
-
-.icon-instagram:before {
-  content: "\ea92";
-}
-
-.icon-calendar:before {
+.icon-viber:before {
   content: "\e900";
+  color: #665cac;
 }
-
+.icon-calendar:before {
+  content: "\e90a";
+}
 .icon-clock:before {
-  content: "\e901";
+  content: "\e90b";
+}
+.icon-arrow-down:before {
+  content: "\e90c";
+}
+.icon-small-arrow-down:before {
+  content: "\e90d";
+}
+.icon-facebook:before {
+  content: "\ea91";
+}
+.icon-instagram:before {
+  content: "\ea93";
+}
+.icon-telegram:before {
+  content: "\e90e";
+  color: #179cde;
 }
 
-.icon-small-arrow-down:before {
-  content: "\e903";
-}

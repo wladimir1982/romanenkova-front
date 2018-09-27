@@ -1,7 +1,10 @@
-import {TLinkTo} from "./types";
+import {TLinkTo} from './types';
 
 export interface IContact {
   name: string;
   account: string;
-  linkto: TLinkTo
+  linkto: TLinkTo;
+  viberMobile?: string;
+  viberDesktop?: string;
+  telegram: string;
 }
