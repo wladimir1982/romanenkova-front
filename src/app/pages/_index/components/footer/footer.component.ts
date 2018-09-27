@@ -10,6 +10,7 @@ import {IContact} from "../../../../interfaces/iContact";
 export class FooterComponent implements OnInit {
   @Input() data: IPage<IContact>;
   @Input() attend: string;
+  @Input() name: string;
 
   constructor() { }
 

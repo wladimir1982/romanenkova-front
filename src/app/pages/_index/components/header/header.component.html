@@ -8,7 +8,7 @@
       </h4>
     </a>
     <app-navigation [nav]="nav" class="navigation" (click)="toggleNavOpen(false)"></app-navigation>
-    <app-social class="social" (click)="toggleNavOpen(false)"></app-social>
+    <app-social class="social" (click)="toggleNavOpen(false)" [contactData]="contactData"></app-social>
     <app-language-selector [(isLanguageListOpen)]="isOpen" class="language"></app-language-selector>
   </div>
   <div class="m-nav-wrapper">

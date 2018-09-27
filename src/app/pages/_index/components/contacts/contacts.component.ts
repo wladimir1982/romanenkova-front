@@ -14,9 +14,11 @@ export class ContactsComponent implements OnInit {
 
   @Input() data: IPage<IContact>;
   @Input() attend: string;
+  @Input() name: string;
   @ViewChild('contacts') private contactsEl: ElementRef;
+
   @HostListener('window:scroll')
-  private listener() {
+  private scrollListener() {
     const contactsPos = this.contactsEl.nativeElement.getBoundingClientRect();
 
     if (contactsPos.y + contactsPos.height <= window.innerHeight) {
@@ -24,9 +26,32 @@ export class ContactsComponent implements OnInit {
     }
   }
 
-  constructor(@Inject(DOCUMENT) private document: Document) { }
+  constructor(@Inject(DOCUMENT) private document: Document) {
+  }
 
   ngOnInit() {
-    this.listener();
+    const contacts = (this.data.pageData as Array<IContact>);
+    const viberCnt: IContact = contacts.find((contact: IContact) => contact.type === 'viber');
+    const telegramCnt: IContact = contacts.find((contact: IContact) => contact.type === 'telegram');
+
+    contacts.forEach((contact: IContact) => {
+      switch (contact.type) {
+        case 'phone':
+          contact.viberDesktop = `viber://chat?number=${viberCnt.account}`;
+          contact.viberMobile = `viber://add?number=${viberCnt.account}`;
+          contact.telegram = `tg://resolve?domain=${telegramCnt.account}`;
+          contact.linkto = `tel:${contact.account}`;
+          break;
+        case 'skype':
+          contact.linkto = `skype:${contact.account}?chat`;
+          break;
+        case 'email':
+          contact.linkto = `mailto:${this.name}<${contact.account}>`;
+          break;
+        default:
+          break;
+      }
+    });
+    this.scrollListener();
   }
 }

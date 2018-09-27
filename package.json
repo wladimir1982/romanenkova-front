@@ -6,6 +6,7 @@
     "start": "ng serve --configuration=qa --aot --port=4201",
     "start:local": "ng serve --configuration=local --aot --port=4201",
     "build": "ng build --configuration=qa --aot",
+    "postbuild": "node copy.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -27,6 +28,7 @@
     "ngx-captcha": "^4.0.1",
     "ngx-mydatepicker": "^2.4.9",
     "ngx-swiper-wrapper": "^6.4.0",
+    "recursive-copy": "^2.0.9",
     "rxjs": "^6.0.0",
     "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.26"

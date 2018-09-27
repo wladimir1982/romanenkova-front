@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, HostListener, Inject, Input, OnInit} from '@angular/core';
 import {INavigationItem} from '../../../../interfaces/iNavigation';
 import {DOCUMENT} from '@angular/common';
-import {tsStructureIsReused} from '@angular/compiler-cli/src/transformers/util';
+import {IContact} from '../../../../interfaces/iContact';
 
 export interface ILanguageState {
   open: boolean;
@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   @Input() attend: string;
   @Input() title: Array<string>;
   @Input() nav: Array<INavigationItem>;
+  @Input() contactData: Array<IContact>;
 
   @HostListener('window:scroll')
   private listenter(): void {

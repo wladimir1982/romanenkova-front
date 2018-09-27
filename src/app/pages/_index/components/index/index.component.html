@@ -1,11 +1,11 @@
 <div class="container">
-  <app-header [isRoot]="isRoot" [title]="title" [nav]="nav" [header]="header" [attend]="attend"></app-header>
+  <app-header [isRoot]="isRoot" [title]="title" [nav]="nav" [header]="header" [attend]="attend" [contactData]="footer.pageData"></app-header>
 
   <main class="content">
     <router-outlet></router-outlet>
   </main>
 
-  <app-footer class="footer" [data]="footer" [attend]="attend"></app-footer>
+  <app-footer class="footer" [data]="footer" [attend]="attend" [name]="name"></app-footer>
 </div>
 
 <app-modal></app-modal>
