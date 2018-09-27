@@ -1,23 +1,25 @@
-<div class="content">
-  <div class="text-wrapper">
-    <p class="text-paragraph" *ngFor="let paragraph of mainText">
-      {{paragraph}}
-    </p>
-  </div>
-  <div class="header-wrapper">
-    <h2 *ngFor="let namePart of name">{{namePart}}</h2>
-  </div>
-  <div class="swiper-wrapper">
-    <div class="swiper-component-wrapper">
-      <app-slider [template]="photoTpl" [slides]="photos"></app-slider>
+<div class="content-wrapper">
+  <div class="content">
+    <div class="text-wrapper">
+      <p class="text-paragraph" *ngFor="let paragraph of mainText">
+        {{paragraph}}
+      </p>
+    </div>
+    <div class="header-wrapper">
+      <h2 *ngFor="let namePart of name">{{namePart}}</h2>
+    </div>
+    <div class="swiper-wrapper">
+      <div class="swiper-component-wrapper">
+        <app-slider [template]="photoTpl" [slides]="photos"></app-slider>
 
-      <ng-template #photoTpl let-source="slide">
-        <div class="swiper-slide-wrapper">
-          <div class="image-wrapper">
-            <img class="image" [src]="source" alt="Slider Photo">
+        <ng-template #photoTpl let-source="slide">
+          <div class="swiper-slide-wrapper">
+            <div class="image-wrapper">
+              <img class="image" [src]="source" alt="Slider Photo">
+            </div>
           </div>
-        </div>
-      </ng-template>
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,18 @@
+@import "../../../../styles/mixins";
+
+.separator {
+  width: 100vw;
+  height: 356px;
+  background-image: url('/assets/separator.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.content-wrapper {
+  width: 80%;
+  margin: 0 auto;
+
+  @include mobile-breakpoint {
+    width: 100%;
+  }
+}

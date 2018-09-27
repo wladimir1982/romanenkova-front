@@ -1,11 +1,9 @@
 @import './../../../../styles/mixins';
 
 .content {
-  width: 80%;
   margin: 0 auto 250px;
 
   @include mobile-breakpoint {
-    width: 100%;
     margin-bottom: 100px;
     margin-top: 40px;
   }
