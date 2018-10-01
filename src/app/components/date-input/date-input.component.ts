@@ -1,7 +1,8 @@
-import {ChangeDetectorRef, Component, forwardRef, Input, OnInit} from '@angular/core';
-import {INgxMyDpOptions, NgxMyDatePickerConfig, NgxMyDatePickerDirective} from "ngx-mydatepicker";
-import {InputComponent} from "../input/input.component";
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {ChangeDetectorRef, Component, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
+import {INgxMyDpOptions, NgxMyDatePickerConfig, NgxMyDatePickerDirective, IMyInputFieldChanged, IMyDateModel} from 'ngx-mydatepicker';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {filter} from 'rxjs/operators';
 
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -15,29 +16,38 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   styleUrls: ['./date-input.component.scss'],
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR, NgxMyDatePickerConfig]
 })
-export class DateInputComponent implements ControlValueAccessor {
+export class DateInputComponent implements ControlValueAccessor, OnInit {
   @Input() label: string;
   @Input() type: string;
   @Input() options: any;
   @Input() icon?: string;
+  @Input() events$: Observable<Event>;
+  @ViewChild('dp') dp: NgxMyDatePickerDirective;
 
   private isDisabled: boolean;
-  private onChange: (v: string) => void = () => {};
-  private onTouch: () => void;
-  public value: any;
-  public dpOptions: INgxMyDpOptions;
-  public textValue: string;
   private isCalendarOpen: boolean;
+  private currentDate: Date = new Date();
+  public value: any;
+  public dpOptions: INgxMyDpOptions = {
+    dateFormat: 'dd mmm yyyy',
+    disableUntil: {year: this.currentDate.getFullYear(), month: this.currentDate.getMonth() + 1, day: this.currentDate.getDate()},
+    disableSince: {year: this.currentDate.getFullYear(), month: this.currentDate.getMonth() + 1, day: this.currentDate.getDate() + 28},
+    enableDates: [{year: this.currentDate.getFullYear(), month: this.currentDate.getMonth() + 1, day: this.currentDate.getDate()}],
+    disableWeekdays: ['su'],
+    allowSelectionOnlyInCurrentMonth: false,
+    showTodayBtn: false,
+    showSelectorArrow: false
+  };
+  public textValue: string;
+  private onTouch: () => void;
+  private onChange: (v: string) => void = () => {};
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
+  }
 
   public writeValue(value: any): void {
     this.value = value;
     this.onChange(value);
-  }
-
-  input($event) {
-    this.textValue = $event.data;
   }
 
   public registerOnChange(fn: any): void {
@@ -52,7 +62,20 @@ export class DateInputComponent implements ControlValueAccessor {
     this.isDisabled = state;
   }
 
-  public toggleCalendar(cal: NgxMyDatePickerDirective, state: boolean) {
+  public ngOnInit(): void {
+    this.events$.pipe(
+      filter((e: Event): boolean => e.type === 'click')
+    )
+      .subscribe((e: Event) => {
+        this.toggleCalendar(this.dp, false);
+      });
+  }
+
+  public input($event): void {
+    this.textValue = $event.data;
+  }
+
+  public toggleCalendar(cal: NgxMyDatePickerDirective, state: boolean): void {
     if (state) {
       cal.openCalendar();
     } else {
@@ -60,13 +83,14 @@ export class DateInputComponent implements ControlValueAccessor {
     }
 
     this.isCalendarOpen = state;
-    console.log(cal);
     this.changeDetectorRef.markForCheck();
   }
 
-  khui() {
-    console.log('pz');
-    this.changeDetectorRef.markForCheck();
+  public stopPropagation($event: Event): void {
+    $event.stopPropagation();
+  }
 
+  onBlur($event: FocusEvent) {
+    console.log($event, this.value);
   }
 }

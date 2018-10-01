@@ -2,7 +2,7 @@ import {Component, OnInit, Renderer2, TemplateRef} from '@angular/core';
 import {ModalService} from '../../services/modal.service';
 import {IModalEvent} from '../../../../interfaces/iModalEvent';
 import {filter} from 'rxjs/internal/operators';
-import {Subject} from "rxjs/index";
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-modal',
@@ -46,9 +46,5 @@ export class ModalComponent implements OnInit {
       this.openModalName = void 0;
       this.renderer.removeClass(document.body, 'modal-overlay');
     });
-  }
-
-  khui() {
-    console.log('asdsdasd');
   }
 }

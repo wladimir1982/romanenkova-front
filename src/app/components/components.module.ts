@@ -4,9 +4,8 @@ import {SliderComponent} from './slider/slider.component';
 import {SwiperModule} from 'ngx-swiper-wrapper';
 import { InputComponent } from './input/input.component';
 import { TextareaComponent } from './textarea/textarea.component';
-import {FormsModule} from "@angular/forms";
-import {NgxMyDatePickerModule} from "ngx-mydatepicker";
-import {ClickOutsideModule} from "ng4-click-outside";
+import {FormsModule} from '@angular/forms';
+import {NgxMyDatePickerModule} from 'ngx-mydatepicker';
 import { DateInputComponent } from './date-input/date-input.component';
 
 @NgModule({
@@ -14,8 +13,7 @@ import { DateInputComponent } from './date-input/date-input.component';
     CommonModule,
     SwiperModule,
     FormsModule,
-    NgxMyDatePickerModule,
-    ClickOutsideModule
+    NgxMyDatePickerModule
   ],
   declarations: [SliderComponent, InputComponent, TextareaComponent, DateInputComponent],
   exports: [SliderComponent, InputComponent, TextareaComponent, DateInputComponent]

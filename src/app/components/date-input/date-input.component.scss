@@ -63,3 +63,8 @@
     cursor: pointer;
   }
 }
+
+/deep/ :host .selector {
+  border: none !important;
+  box-shadow: 0 0 50px 0 rgba(0, 0, 0, .1);
+}
