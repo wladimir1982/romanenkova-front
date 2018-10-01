@@ -1,6 +1,8 @@
 @import './../../styles/variables';
 @import './../../styles/mixins';
 
+$arrow: 1px solid #ffffff;
+
 .input {
   display: block;
   width: 100%;
@@ -23,6 +25,7 @@
   &-wrapper {
     display: block;
     padding-top: 20px;
+    position: relative;
   }
 
   &-label {
@@ -64,7 +67,104 @@
   }
 }
 
-/deep/ :host .selector {
-  border: none !important;
-  box-shadow: 0 0 50px 0 rgba(0, 0, 0, .1);
+.calendar {
+  &-wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+    background-color: #fff;
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, .1);
+    width: 46 * 7px;
+  }
+
+  &-month {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+
+    .prev, .next {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: $color-text-accent;
+      position: relative;
+      cursor: pointer;
+
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        transform: translate(-50%, -50%) rotate(45deg);
+        top: 50%;
+      }
+    }
+
+    .prev {
+      &:after {
+        border-bottom: $arrow;
+        border-left: $arrow;
+        left: calc(50% + 1px)
+      }
+    }
+
+    .next {
+      &:after {
+        border-top: $arrow;
+        border-right: $arrow;
+        left: calc(50% - 1px)
+      }
+    }
+  }
+
+  &-weekdays {
+    display: flex;
+    width: 100%;
+
+    .weekday {
+      flex-basis: 30px;
+      height: 30px;
+      text-align: center;
+      flex-grow: 0;
+      flex-shrink: 0;
+      color: #bebebe;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 8px;
+    }
+  }
+
+  &-dates {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+
+    .date {
+      flex-basis: 30px;
+      height: 30px;
+      border-radius: 50%;
+      text-align: center;
+      flex-grow: 0;
+      flex-shrink: 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 8px;
+      background-color: #fff;
+      transition: .3s background-color ease;
+
+      &.active {
+        background-color: $color-accept;
+      }
+
+      &:hover {
+        background-color: $color-accept;
+        transition: .3s background-color ease;
+      }
+    }
+  }
 }

@@ -1,15 +1,33 @@
 <div class="input-wrapper">
   <label class="input-label" (click)="stopPropagation($event)">
     <input class="input"
-           #dp="ngx-mydatepicker"
-           ngx-mydatepicker
            [ngModel]="value"
            (ngModelChange)="writeValue($event)"
-           [ngModelOptions]="{standalone: true}"
-           [options]="dpOptions"
-           (input)="input($event)"
-           (blur)="onBlur($event)"/>
+           [ngModelOptions]="{standalone: true}"/>
     <div class="input-text" [class.top]="value || textValue">{{label}}</div>
     <span class="input-icon icon-calendar" (click)="dp.toggleCalendar()"></span>
   </label>
+  <div class="calendar-wrapper">
+    <div class="calendar-month">
+      <div class="prev" (click)="setMonth('prev')"></div>
+      <div class="label">{{monthYearRange[monthYearRangeIndex].format('MMMM YYYY')}}</div>
+      <div class="next" (click)="setMonth('next')"></div>
+    </div>
+    <div class="calendar-weekdays">
+      <div class="weekday"><span>{{weekdays.mo}}</span></div>
+      <div class="weekday"><span>{{weekdays.tu}}</span></div>
+      <div class="weekday"><span>{{weekdays.we}}</span></div>
+      <div class="weekday"><span>{{weekdays.th}}</span></div>
+      <div class="weekday"><span>{{weekdays.fr}}</span></div>
+      <div class="weekday"><span>{{weekdays.st}}</span></div>
+      <div class="weekday"><span>{{weekdays.su}}</span></div>
+    </div>
+    <div class="calendar-dates">
+      <div class="date" [class.active]="selectedDate.format('D.M.YYYY') === day.format('D.M.YYYY')"
+           [style.margin-left.px]="index === 0 && 8 + ((day.weekday() - 1) * 46)"
+           *ngFor="let day of getDaysLine(); let index = index" (click)="setActiveDate(day)">
+        <span>{{day.format('DD')}}</span>
+      </div>
+    </div>
+  </div>
 </div>
