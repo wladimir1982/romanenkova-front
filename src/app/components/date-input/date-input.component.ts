@@ -74,10 +74,14 @@ export class DateInputComponent implements ControlValueAccessor, OnInit {
 
   public writeValue(value: string): void {
     this.value = value;
+    if (!value) {
+      this.onChange(value);
+    }
     if (this.shouldParseDate) {
       const parsedDate = moment(value, ['DD.MM.YYYY', 'DD,MM,YYYY', 'DD-MM-YYYY', 'MM/DD/YYYY', 'YYYY-MM-DD', 'DD.MM', 'DD,MM', 'DD-MM', 'MM/DD', 'MM-DD']).startOf('day');
       if (!parsedDate.isValid() || !parsedDate.within(this.range)) {
         this.parsedDate = '';
+        this.onChange('');
         return;
       }
       this.selectedDate = parsedDate;
