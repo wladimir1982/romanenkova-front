@@ -4,13 +4,14 @@ import {ResolveIndexService} from './pages/_index/services/resolve-index.service
 import {IndexComponent} from './pages/_index/components/index/index.component';
 import {ResolveLanguageService} from './resolve-language.service';
 import {LanguageGuardService} from './language-guard.service';
+import {ResolveScheduleService} from './resolve-schedule.service';
 
 const routes: Routes = [
   {
     path: ':lang',
     loadChildren: './pages/_index/index.module#IndexModule',
     canActivate: [LanguageGuardService],
-    resolve: {headerData: ResolveIndexService, language: ResolveLanguageService},
+    resolve: {headerData: ResolveIndexService, language: ResolveLanguageService, schedule: ResolveScheduleService},
     component: IndexComponent,
     outlet: 'primary'
   }, {

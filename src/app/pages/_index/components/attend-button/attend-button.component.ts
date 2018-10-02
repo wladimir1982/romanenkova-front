@@ -11,7 +11,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../../environments/environment';
 import {ReCaptcha2Component} from 'ngx-captcha';
 import {IMonths, IWeekdays} from '../../../../components/date-input/date-input.component';
-import * as moment from 'moment';
+import {ResolveScheduleService} from '../../../../resolve-schedule.service';
 
 @Component({
   selector: 'app-attend-button',
@@ -35,12 +35,15 @@ export class AttendButtonComponent implements OnInit {
   public errorObj: any = {};
   private isCaptchaResolved: boolean;
   public isSubmitting: boolean;
+  private dateControl: FormControl = new FormControl();
+  private timeControl: FormControl = new FormControl({value: '', disabled: !this.dateControl.value});
 
   constructor(private modalService: ModalService,
               private formBuilder: FormBuilder,
               private languageGuardService: LanguageGuardService,
               private httpClient: HttpClient,
-              private changeDetectorRef: ChangeDetectorRef) {
+              private changeDetectorRef: ChangeDetectorRef,
+              private scheduleService: ResolveScheduleService) {
   }
 
   ngOnInit() {
@@ -49,13 +52,21 @@ export class AttendButtonComponent implements OnInit {
       name: new FormControl(),
       phone: new FormControl(),
       email: new FormControl(),
-      date: new FormControl(),
-      time: new FormControl(),
+      date: this.dateControl,
+      time: this.timeControl,
       message: new FormControl(),
       service: new FormControl(),
-      recaptcha:  new FormControl('', Validators.required)
+      recaptcha: new FormControl('', Validators.required)
     });
     this.lang = this.languageGuardService.selectedLang;
+    this.dateControl.valueChanges.subscribe((newValue: any) => {
+      if (newValue) {
+        this.timeControl.enable();
+      } else {
+        this.timeControl.disable();
+      }
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
   openModal(tpl: TemplateRef<any>) {

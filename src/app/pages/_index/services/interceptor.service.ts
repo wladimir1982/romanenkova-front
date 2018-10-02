@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest} from "@angular/common/http";
-import {Observable} from "rxjs/index";
-import {LanguageGuardService} from "../../../language-guard.service";
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {LanguageGuardService} from '../../../language-guard.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class InterceptorService implements HttpInterceptor {
   private languagedUrls: Array<string> = ['appointment'];
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let shouldAddLanguage: boolean = false;
+    let shouldAddLanguage = false;
     this.languagedUrls.forEach((url: string) => {
       if (req.url.includes(url)) {
         shouldAddLanguage = true;
@@ -31,8 +31,6 @@ export class InterceptorService implements HttpInterceptor {
     }
 
     const newReq = req.clone({params});
-
-    console.log(newReq);
 
     return next.handle(newReq);
   }

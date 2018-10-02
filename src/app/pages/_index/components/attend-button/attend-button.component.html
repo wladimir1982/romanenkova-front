@@ -14,8 +14,8 @@
     <div class="datetime">
       <app-date-input [options]="{type: 'date'}" class="date" [label]="modalData.pageData.date" type="text"
                       formControlName="date" icon="icon-calendar" [events$]="events"></app-date-input>
-      <app-input class="time" [label]="modalData.pageData.time" type="text" formControlName="time"
-                 icon="icon-clock"></app-input>
+      <app-select class="time" [label]="modalData.pageData.time" type="text" formControlName="time"
+                 icon="icon-clock"></app-select>
     </div>
     <app-input [label]="modalData.pageData.service" type="text" formControlName="service"
                icon="icon-small-arrow-down"></app-input>

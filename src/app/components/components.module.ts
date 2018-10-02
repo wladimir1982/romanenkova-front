@@ -17,6 +17,6 @@ import { SelectComponent } from './select/select.component';
     NgxMyDatePickerModule
   ],
   declarations: [SliderComponent, InputComponent, TextareaComponent, DateInputComponent, SelectComponent],
-  exports: [SliderComponent, InputComponent, TextareaComponent, DateInputComponent]
+  exports: [SliderComponent, InputComponent, TextareaComponent, DateInputComponent, SelectComponent]
 })
 export class ComponentsModule { }
