@@ -3,9 +3,9 @@ import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from '@angular/route
 import {INavigationItem} from '../../../../interfaces/iNavigation';
 import {filter} from 'rxjs/internal/operators';
 import IPage from '../../../../interfaces/iPage';
-import {IContact} from "../../../../interfaces/iContact";
-import {IModalAppointment} from "../../../../interfaces/iModalAppointment";
-import {ModalService} from "../../services/modal.service";
+import {IContact} from '../../../../interfaces/iContact';
+import {IModalAppointment} from '../../../../interfaces/iModalAppointment';
+import {ModalService} from '../../services/modal.service';
 
 @Component({
   selector: 'app-index',

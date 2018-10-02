@@ -5,12 +5,13 @@ import {
 import {ModalService} from '../../services/modal.service';
 import {IModalAppointment} from '../../../../interfaces/iModalAppointment';
 import IPage from '../../../../interfaces/iPage';
-import {FormBuilder, FormGroup, FormControl, Validators, FormGroupDirective} from "@angular/forms";
-import {LanguageGuardService} from "../../../../language-guard.service";
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../../../environments/environment";
-import {ReCaptcha2Component} from "ngx-captcha";
-import {INgxMyDpOptions} from "ngx-mydatepicker";
+import {FormBuilder, FormGroup, FormControl, Validators, FormGroupDirective} from '@angular/forms';
+import {LanguageGuardService} from '../../../../language-guard.service';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../../../environments/environment';
+import {ReCaptcha2Component} from 'ngx-captcha';
+import {IMonths, IWeekdays} from '../../../../components/date-input/date-input.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-attend-button',
@@ -21,6 +22,10 @@ import {INgxMyDpOptions} from "ngx-mydatepicker";
 })
 export class AttendButtonComponent implements OnInit {
   @Input() public text: string;
+  @Input() calendarData: {
+    weekdays: IWeekdays;
+    months: IMonths
+  };
   @ViewChild('modalAppointment') private modalAppointmentRef: TemplateRef<any>;
   @ViewChild('modalAppointmentMessage') private modalAppointmentMessageRef: TemplateRef<any>;
 
@@ -29,7 +34,6 @@ export class AttendButtonComponent implements OnInit {
   public lang: string;
   public errorObj: any = {};
   private isCaptchaResolved: boolean;
-  datePickerOptions: INgxMyDpOptions;
   public isSubmitting: boolean;
 
   constructor(private modalService: ModalService,

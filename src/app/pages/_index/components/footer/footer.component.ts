@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import IPage from '../../../../interfaces/iPage';
-import {IContact} from "../../../../interfaces/iContact";
+import {IContact} from '../../../../interfaces/iContact';
 
 @Component({
   selector: 'app-footer',

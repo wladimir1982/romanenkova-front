@@ -7,6 +7,7 @@ import { TextareaComponent } from './textarea/textarea.component';
 import {FormsModule} from '@angular/forms';
 import {NgxMyDatePickerModule} from 'ngx-mydatepicker';
 import { DateInputComponent } from './date-input/date-input.component';
+import { SelectComponent } from './select/select.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { DateInputComponent } from './date-input/date-input.component';
     FormsModule,
     NgxMyDatePickerModule
   ],
-  declarations: [SliderComponent, InputComponent, TextareaComponent, DateInputComponent],
+  declarations: [SliderComponent, InputComponent, TextareaComponent, DateInputComponent, SelectComponent],
   exports: [SliderComponent, InputComponent, TextareaComponent, DateInputComponent]
 })
 export class ComponentsModule { }

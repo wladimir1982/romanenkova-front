@@ -26,6 +26,15 @@ $arrow: 1px solid #ffffff;
     display: block;
     padding-top: 20px;
     position: relative;
+
+    &.invalid {
+      color: $color-error;
+
+      .input {
+        color: $color-error;
+        border-bottom-color: $color-error;
+      }
+    }
   }
 
   &-label {
@@ -91,6 +100,10 @@ $arrow: 1px solid #ffffff;
       position: relative;
       cursor: pointer;
 
+      &.hidden {
+        visibility: hidden;
+      }
+
       &:after {
         content: '';
         display: block;
@@ -117,6 +130,11 @@ $arrow: 1px solid #ffffff;
         left: calc(50% - 1px)
       }
     }
+
+    .label {
+      font-weight: bold;
+      padding-top: 15px;
+    }
   }
 
   &-weekdays {
@@ -141,6 +159,7 @@ $arrow: 1px solid #ffffff;
     display: flex;
     width: 100%;
     flex-wrap: wrap;
+    padding-bottom: 15px;
 
     .date {
       flex-basis: 30px;

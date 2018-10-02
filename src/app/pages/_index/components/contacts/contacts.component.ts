@@ -1,7 +1,6 @@
 import {Component, ElementRef, HostListener, Inject, Input, OnInit, ViewChild} from '@angular/core';
 import IPage from '../../../../interfaces/iPage';
 import {IContact} from '../../../../interfaces/iContact';
-import {animate, keyframes, style, transition, trigger} from '@angular/animations';
 import {DOCUMENT} from '@angular/common';
 
 @Component({

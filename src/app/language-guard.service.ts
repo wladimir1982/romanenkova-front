@@ -12,7 +12,7 @@ import {ILangItem} from './interfaces/iLangItem';
 })
 export class LanguageGuardService implements CanActivate {
   public langItems: Array<ILangItem>;
-  public selectedLang: string;
+  public selectedLang: string = 'en';
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     const storedLang = localStorage.getItem('lang');
