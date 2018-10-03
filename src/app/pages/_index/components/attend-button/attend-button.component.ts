@@ -51,6 +51,7 @@ export class AttendButtonComponent implements OnInit {
 
   ngOnInit() {
     this.modalAppointment = this.modalService.modalAppointment;
+    console.log(this.modalService.services);
     this.formGroup = this.formBuilder.group({
       name: new FormControl(),
       phone: new FormControl(),
