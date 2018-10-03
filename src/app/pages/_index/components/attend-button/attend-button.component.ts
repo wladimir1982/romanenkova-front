@@ -10,8 +10,13 @@ import {LanguageGuardService} from '../../../../language-guard.service';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../../environments/environment';
 import {ReCaptcha2Component} from 'ngx-captcha';
-import {IMonths, IWeekdays} from '../../../../components/date-input/date-input.component';
 import {ResolveScheduleService} from '../../../../resolve-schedule.service';
+import {Moment} from 'moment';
+import {ISchedule} from '../../../../interfaces/iSchedule';
+import * as initMoment from 'moment';
+import {extendMoment} from 'moment-range';
+
+const moment = extendMoment(initMoment);
 
 @Component({
   selector: 'app-attend-button',
@@ -22,10 +27,6 @@ import {ResolveScheduleService} from '../../../../resolve-schedule.service';
 })
 export class AttendButtonComponent implements OnInit {
   @Input() public text: string;
-  @Input() calendarData: {
-    weekdays: IWeekdays;
-    months: IMonths
-  };
   @ViewChild('modalAppointment') private modalAppointmentRef: TemplateRef<any>;
   @ViewChild('modalAppointmentMessage') private modalAppointmentMessageRef: TemplateRef<any>;
 
@@ -35,8 +36,10 @@ export class AttendButtonComponent implements OnInit {
   public errorObj: any = {};
   private isCaptchaResolved: boolean;
   public isSubmitting: boolean;
-  private dateControl: FormControl = new FormControl();
+  public schedule: any;
+  public dateControl: FormControl = new FormControl();
   private timeControl: FormControl = new FormControl({value: '', disabled: !this.dateControl.value});
+  public timeSlots: Array<string> = [];
 
   constructor(private modalService: ModalService,
               private formBuilder: FormBuilder,
@@ -59,8 +62,13 @@ export class AttendButtonComponent implements OnInit {
       recaptcha: new FormControl('', Validators.required)
     });
     this.lang = this.languageGuardService.selectedLang;
-    this.dateControl.valueChanges.subscribe((newValue: any) => {
-      if (newValue) {
+    this.schedule = this.scheduleService.schedule;
+    this.dateControl.valueChanges.subscribe((newValue: Moment) => {
+      this.getTimeSlots(newValue);
+      if (this.timeSlots.indexOf(this.timeControl.value) === -1) {
+        this.timeControl.setValue(null);
+      }
+      if (newValue && this.timeSlots.length) {
         this.timeControl.enable();
       } else {
         this.timeControl.disable();
@@ -76,7 +84,7 @@ export class AttendButtonComponent implements OnInit {
   submit(e: FormGroupDirective, captchaElement: ReCaptcha2Component) {
     this.errorObj = {};
     this.isSubmitting = true;
-    this.httpClient.post(environment.api + 'appointment', e.value).subscribe((data: any) => {
+    this.httpClient.post(environment.api + 'appointment', {...e.value, date: e.value.date.format('DD.MM.YYYY')}).subscribe((data: any) => {
       this.isSubmitting = false;
       this.modalService.closeModal('appointment', 'success', e.value);
       this.modalService.openModal('appointment', this.modalAppointmentMessageRef, {header: data.h, text: data.m});
@@ -99,5 +107,30 @@ export class AttendButtonComponent implements OnInit {
 
   handleSuccess($event) {
     this.isCaptchaResolved = true;
+  }
+
+  getTimeSlots(date: Moment): void {
+    this.timeSlots.length = 0;
+    if (!date) {
+      return;
+    }
+    const weekdaysMapper = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su'];
+    const schedule = (this.schedule.find((scheduleItem: ISchedule): boolean => date.isSame(moment(scheduleItem.date, 'DD.MM.YYYY')))
+      || this.schedule.find((scheduleItem: ISchedule): boolean => scheduleItem.weekday === weekdaysMapper[date.weekday()])).availableHours;
+
+    schedule.forEach((hours: string, index: number): void => {
+      const hoursArr = hours.split('-');
+      const start = moment(hoursArr[0], 'HH:mm');
+      const end = moment(hoursArr[1], 'HH:mm');
+      const range = moment.range(start, end);
+      const slots = Array
+        .from(range.by('hours'))
+        .map((startTime: Moment): string =>
+          `${startTime.format('HH:mm')} - ${startTime.add(1, 'hour').format('HH:mm')}`);
+      if (index < schedule.length - 1) {
+        slots.push('_');
+      }
+      this.timeSlots.push(...slots);
+    });
   }
 }

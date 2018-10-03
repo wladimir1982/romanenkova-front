@@ -2,10 +2,11 @@
   <div class="input-label" (click)="focusInput()">
     <input class="input"
            [ngModel]="value"
-           (ngModelChange)="writeValue($event)"
-           [ngModelOptions]="{standalone: true}" #dateInput/>
+           (ngModelChange)="writeValueFromTemplate($event)"
+           [ngModelOptions]="{standalone: true}"
+           (blur)="onBlurInput()" #dateInput/>
     <div class="input-text" [class.top]="value || textValue">{{label}} {{parsedDate}}</div>
-    <span class="input-icon icon-calendar" (click)="toggleCalendar(true)" (click)="stopPropagation($event)"></span>
+    <span class="input-icon icon-calendar" (click)="toggleCalendar()" (click)="stopPropagation($event)"></span>
   </div>
   <div class="calendar-wrapper" (click)="stopPropagation($event)">
     <ng-container *ngIf="isCalendarOpen">
@@ -20,6 +21,7 @@
       <div class="calendar-dates">
         <ng-container *ngFor="let day of getDays(); let index = index">
           <div class="date" [class.active]="selectedDate.format('D.M.YYYY') === day.format('D.M.YYYY')"
+               [class.disabled]="!getAvailability(day)"
                [style.margin-left.px]="index === 0 && 8 + (day.weekday() * 46)" (click)="setActiveDate(day)">
             <span>{{day.format('DD')}}</span>
           </div>

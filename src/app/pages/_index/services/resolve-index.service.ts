@@ -5,10 +5,10 @@ import {environment} from '../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/internal/operators';
 import {INavigationItem, INavigationUrl} from '../../../interfaces/iNavigation';
-import IPage from "../../../interfaces/iPage";
-import {IIndexPageData} from "../../../interfaces/iIndexPageData";
-import {IContact} from "../../../interfaces/iContact";
-import {IModalAppointment} from "../../../interfaces/iModalAppointment";
+import IPage from '../../../interfaces/iPage';
+import {IIndexPageData} from '../../../interfaces/iIndexPageData';
+import {IContact} from '../../../interfaces/iContact';
+import {IModalAppointment} from '../../../interfaces/iModalAppointment';
 
 @Injectable({
   providedIn: 'root'

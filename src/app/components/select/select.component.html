@@ -1,12 +1,29 @@
-<div class="input-wrapper" [class.disabled]="isDisabled">
-  <label class="input-label">
-    <input class="input"
-           [type]="type"
-           [(ngModel)]="value"
-           [ngModelOptions]="{standalone: true}"
-           (ngModelChange)="writeValue($event)"
-           [disabled]="isDisabled"/>
+<div class="input-wrapper" [class.disabled]="isDisabled" (click)="stopPropagation($event)">
+  <div class="input-label" (click)="toggleList()">
+    <div class="input">
+      <span>{{value}}</span>
+    </div>
     <div class="input-text" [class.top]="value && value.length">{{label}}</div>
     <span class="input-icon" [ngClass]="icon" *ngIf="icon"></span>
-  </label>
+  </div>
+  <ng-container *ngIf="isListOpen">
+    <div class="list-wrapper" *ngIf="list.length">
+      <ul class="list">
+        <li class="list-item" (click)="setActiveItem(null)">{{clearSelectionLabel}}</li>
+        <li class="list-separator"></li>
+        <ng-container *ngFor="let listItem of list">
+          <li class="list-item" (click)="setActiveItem(listItem)" *ngIf="listItem !== '_'">
+            <ng-container *ngIf="listDisplayProperty; then object; else plain"></ng-container>
+            <ng-template #object>
+              <span>{{listItem[listDisplayProperty]}}</span>
+            </ng-template>
+            <ng-template #plain>
+              <span *ngIf="listItem !== '_'">{{listItem}}</span>
+            </ng-template>
+          </li>
+          <li class="list-separator" *ngIf="listItem === '_'"></li>
+        </ng-container>
+      </ul>
+    </div>
+  </ng-container>
 </div>
