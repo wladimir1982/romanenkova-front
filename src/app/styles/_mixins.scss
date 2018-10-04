@@ -29,7 +29,7 @@
 }
 
 @mixin placeholder {
-  &::-ms-input-placeholder  {
+  &:-ms-input-placeholder  {
     @content;
   }
 

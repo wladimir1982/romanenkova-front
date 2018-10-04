@@ -1,5 +1,5 @@
-import {TLanguage} from "./types";
-import {ILangItem} from "./iLangItem";
+import {TLanguage} from './types';
+import {ILangItem} from './iLangItem';
 
 export interface ILanguageResponse {
   lang: TLanguage;

@@ -5,8 +5,10 @@
   flex-basis: 0;
   flex-grow: 1;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  margin-right: 100px;
+  //justify-content: space-around;
+  //margin-right: 100px;
 
   &-icon {
     margin-right: 20px;

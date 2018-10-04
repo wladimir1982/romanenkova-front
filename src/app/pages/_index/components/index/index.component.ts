@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from '@angular/router';
 import {INavigationItem} from '../../../../interfaces/iNavigation';
-import {filter} from 'rxjs/internal/operators';
+import {filter} from 'rxjs/operators';
 import IPage from '../../../../interfaces/iPage';
 import {IContact} from '../../../../interfaces/iContact';
 import {IModalAppointment} from '../../../../interfaces/iModalAppointment';

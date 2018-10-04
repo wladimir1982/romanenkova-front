@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inp
 import {ILangItem} from '../../../../../interfaces/iLangItem';
 import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from '@angular/router';
 import {LanguageGuardService} from '../../../../../language-guard.service';
-import {filter} from 'rxjs/internal/operators';
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-language-selector',
@@ -17,7 +17,8 @@ export class LanguageSelectorComponent implements OnInit {
   @Input() public isLanguageListOpen: boolean;
   @Output() public isLanguageListOpenChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private route: ActivatedRoute, private router: Router, private languageGuardService: LanguageGuardService, private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private route: ActivatedRoute, private router: Router,
+              private languageGuardService: LanguageGuardService, private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, forwardRef, Input} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
@@ -20,10 +20,10 @@ export class InputComponent implements ControlValueAccessor {
   @Input() options: any;
   @Input() icon?: string;
 
+  public value: string;
+  private onTouch: () => void;
   private isDisabled: boolean;
   private onChange: (v: string) => void = () => {};
-  private onTouch: () => void;
-  public value: string;
 
   public writeValue(value: string): void {
     this.value = value;

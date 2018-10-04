@@ -1,7 +1,7 @@
 import {Component, OnInit, Renderer2, TemplateRef} from '@angular/core';
 import {ModalService} from '../../services/modal.service';
 import {IModalEvent} from '../../../../interfaces/iModalEvent';
-import {filter} from 'rxjs/internal/operators';
+import {filter} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 
 @Component({

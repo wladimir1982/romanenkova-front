@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/index';
+import {Observable} from 'rxjs';
 import {ActivatedRouteSnapshot} from '@angular/router';
 import {environment} from '../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs/internal/operators';
+import {map} from 'rxjs/operators';
 import {INavigationItem, INavigationUrl} from '../../../interfaces/iNavigation';
-import IPage from "../../../interfaces/iPage";
-import {IIndexPageData} from "../../../interfaces/iIndexPageData";
-import {IContact} from "../../../interfaces/iContact";
-import {IModalAppointment} from "../../../interfaces/iModalAppointment";
+import IPage from '../../../interfaces/iPage';
+import {IIndexPageData} from '../../../interfaces/iIndexPageData';
+import {IContact} from '../../../interfaces/iContact';
+import {IModalAppointment} from '../../../interfaces/iModalAppointment';
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +25,15 @@ export class ResolveIndexService {
   public name: string;
 
   resolve(route: ActivatedRouteSnapshot): Observable<IIndexPageData> {
-    return this.httpClient.get<Array<IPage<IContact | INavigationItem > | IModalAppointment>>(environment.api + 'interface', {params: {lang: route.params.lang, id: ['contacts', 'nav', '[modal] appointment']}})
+    return this.httpClient.get<Array<IPage<IContact | INavigationItem > | IModalAppointment>>(environment.api + 'interface',
+      {params: {lang: route.params.lang, id: ['contacts', 'nav', '[modal] appointment']}})
       .pipe(map((data: Array<IPage<IContact | INavigationItem | IModalAppointment>>): IIndexPageData => {
-        const contacts: IPage<IContact> = data.find((page: IPage<IContact>): boolean => page.entityId === 'contacts') as IPage<IContact>;
-        const header: IPage<INavigationItem> = data.find((page: IPage<INavigationItem>): boolean => page.entityId === 'nav') as IPage<INavigationItem>;
-        const modalAppointment: IPage<IModalAppointment> = data.find((page: IPage<IModalAppointment>): boolean => page.entityId === '[modal] appointment') as IPage<IModalAppointment>;
+        const contacts: IPage<IContact> = data
+          .find((page: IPage<IContact>): boolean => page.entityId === 'contacts') as IPage<IContact>;
+        const header: IPage<INavigationItem> = data
+          .find((page: IPage<INavigationItem>): boolean => page.entityId === 'nav') as IPage<INavigationItem>;
+        const modalAppointment: IPage<IModalAppointment> = data
+          .find((page: IPage<IModalAppointment>): boolean => page.entityId === '[modal] appointment') as IPage<IModalAppointment>;
         const title: [string, string] = (header.pageData[0] as INavigationItem).name as [string, string];
         const buttonText = (header.pageData[1] as INavigationItem).name as string;
         const name = ((header.pageData[2] as INavigationItem).name as [string, string, string]).splice(1).join(' ');

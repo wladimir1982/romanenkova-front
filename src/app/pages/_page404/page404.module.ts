@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {Page404Component} from "./components/page404.component";
+import {Page404Component} from './components/page404.component';
 
 @NgModule({
   imports: [

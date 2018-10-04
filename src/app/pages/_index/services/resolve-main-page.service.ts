@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {LanguageGuardService} from "../../../language-guard.service";
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
-import {combineLatest, Observable} from "rxjs/index";
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../../environments/environment";
-import IPage from "../../../interfaces/iPage";
+import {LanguageGuardService} from '../../../language-guard.service';
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
+import {combineLatest, Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../../environments/environment';
+import IPage from '../../../interfaces/iPage';
 
 @Injectable({
   providedIn: 'root'

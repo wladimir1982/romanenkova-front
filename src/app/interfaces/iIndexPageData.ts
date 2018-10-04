@@ -1,7 +1,7 @@
-import {INavigationItem} from "./iNavigation";
-import {IContact} from "./iContact";
-import IPage from "./iPage";
-import {IModalAppointment} from "./iModalAppointment";
+import {INavigationItem} from './iNavigation';
+import {IContact} from './iContact';
+import IPage from './iPage';
+import {IModalAppointment} from './iModalAppointment';
 
 export interface IIndexPageData {
   title: [string, string];
@@ -10,5 +10,5 @@ export interface IIndexPageData {
   contacts: IPage<IContact>;
   name: string;
   position: string;
-  modalAppointment: IPage<IModalAppointment>
+  modalAppointment: IPage<IModalAppointment>;
 }

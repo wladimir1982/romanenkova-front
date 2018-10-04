@@ -1,5 +1,5 @@
-import {TemplateRef} from "@angular/core";
-import {Observable} from "rxjs/index";
+import {TemplateRef} from '@angular/core';
+import {Observable} from 'rxjs';
 
 export interface IModalEvent<T = any> {
   name: string;

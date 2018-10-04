@@ -6,10 +6,11 @@
   -ms-grid-columns: 45% 55%;
   grid-template-columns: 45% 55%;
   -ms-grid-rows: auto 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 0fr;
 
   &-wrapper {
     width: 80%;
+    margin: 0 auto;
   }
 
   @include mobile-breakpoint {
@@ -31,6 +32,7 @@
   -ms-grid-row-span: 1;
   grid-row: 1 /span 2;
   padding-left: 100px;
+  overflow: auto;
 
   @include mobile-breakpoint {
     padding: 0 20px;
@@ -105,4 +107,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  background-color: $color-text-accent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: $color-hover;
+  transition: background-color ease .3s;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
 }

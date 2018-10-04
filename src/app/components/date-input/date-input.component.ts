@@ -5,7 +5,6 @@ import {filter} from 'rxjs/operators';
 import * as Moment from 'moment';
 import {DateRange, extendMoment} from 'moment-range';
 import {LanguageGuardService} from '../../language-guard.service';
-import {invalid} from 'moment';
 
 const moment = extendMoment(Moment);
 
@@ -78,7 +77,9 @@ export class DateInputComponent implements ControlValueAccessor, OnInit {
       this.onChange(value);
     }
     if (this.shouldParseDate) {
-      const parsedDate = moment(value, ['DD.MM.YYYY', 'DD,MM,YYYY', 'DD-MM-YYYY', 'MM/DD/YYYY', 'YYYY-MM-DD', 'DD.MM', 'DD,MM', 'DD-MM', 'MM/DD', 'MM-DD']).startOf('day');
+      const parsedDate = moment(value, ['DD.MM.YYYY', 'DD,MM,YYYY', 'DD-MM-YYYY', 'MM/DD/YYYY', 'YYYY-MM-DD', 'DD.MM', 'DD,MM',
+        'DD-MM', 'MM/DD', 'MM-DD'])
+        .startOf('day');
       if (!parsedDate.isValid() || !parsedDate.within(this.range)) {
         this.parsedDate = '';
         this.onChange('');
