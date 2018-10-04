@@ -12,10 +12,11 @@
     <app-input [label]="modalData.pageData.email" type="email" formControlName="email"></app-input>
     <div class="explanation oneof-field-err">{{errorObj.contact}}</div>
     <div class="datetime">
-      <app-date-input [options]="{type: 'date'}" class="date" [label]="modalData.pageData.date" type="text"
-                      formControlName="date" icon="icon-calendar" [events$]="events"></app-date-input>
+      <app-date-input class="date" [label]="modalData.pageData.date" type="text"
+                      formControlName="date" icon="icon-calendar" [events$]="events" [control]="dateControl"
+      [schedule]="schedule"></app-date-input>
       <app-select class="time" [label]="modalData.pageData.time" type="text" formControlName="time"
-                 icon="icon-clock"></app-select>
+                 icon="icon-clock" [list]="timeSlots" [events$]="events"></app-select>
     </div>
     <app-input [label]="modalData.pageData.service" type="text" formControlName="service"
                icon="icon-small-arrow-down"></app-input>

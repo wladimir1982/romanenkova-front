@@ -10,6 +10,7 @@ import {IModalEvent} from '../../../interfaces/iModalEvent';
 export class ModalService {
   private _modalAppointment: IPage<IModalAppointment>;
   private _modalEvent: Subject<IModalEvent> = new Subject<IModalEvent>();
+  public services: Array<string>;
 
   public set modalAppointment(value: IPage<IModalAppointment>) {
     if (this._modalAppointment) {

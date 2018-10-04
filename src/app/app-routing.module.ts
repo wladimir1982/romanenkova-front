@@ -5,6 +5,7 @@ import {IndexComponent} from './pages/_index/components/index/index.component';
 import {ResolveLanguageService} from './resolve-language.service';
 import {LanguageGuardService} from './language-guard.service';
 import {ResolveScheduleService} from './resolve-schedule.service';
+import {ResolveServicesService} from './pages/_index/services/resolve-services.service';
 
 const routes: Routes = [
   {

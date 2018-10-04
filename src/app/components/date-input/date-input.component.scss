@@ -180,6 +180,12 @@ $arrow: 1px solid #ffffff;
         background-color: $color-accept;
       }
 
+      &.disabled {
+        background-color: #f4f4f4;
+        color: #bebebe;
+        pointer-events: none;
+      }
+
       &:hover {
         background-color: $color-accept;
         transition: .3s background-color ease;

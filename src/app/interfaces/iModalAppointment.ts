@@ -9,4 +9,6 @@ export interface IModalAppointment {
   checkbox: string;
   submit: string;
   explanation: string;
+  tooltips: {[key: string]: string};
+  selectClear: string;
 }

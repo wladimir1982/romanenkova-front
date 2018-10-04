@@ -21,6 +21,8 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { OverviewAboutComponent } from './components/overview-about/overview-about.component';
 import {ResolveMainPageService} from './services/resolve-main-page.service';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import {ResolveScheduleService} from '../../resolve-schedule.service';
+import {ResolveServicesService} from './services/resolve-services.service';
 
 @NgModule({
   imports: [
@@ -63,7 +65,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
         path: '',
         component: MainComponent,
         data: {pageid: 'main'},
-        resolve: {pageData: ResolvePageService, pageBlocks: ResolveMainPageService}
+        resolve: {pageData: ResolvePageService, pageBlocks: ResolveMainPageService, services: ResolveServicesService}
       },
     ]),
     NgxCaptchaModule.forRoot({

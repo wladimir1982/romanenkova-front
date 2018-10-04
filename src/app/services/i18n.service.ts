@@ -7,20 +7,19 @@ import {LocaleSpecification} from 'moment';
 })
 export class I18nService {
   private momentLocalization: {[key: string]: LocaleSpecification} = {
-    ru: {
-      weekdays: [],
-      weekdaysMin: [],
-      weekdaysShort: [],
-      longDateFormat: {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd D MMMM YYYY HH:mm'
-      }
-    }
+    ru: {}
   };
+  private _clearSelectionLabel: string;
+  set clearSelectionLabel(value: string) {
+    if (!this._clearSelectionLabel) {
+      this._clearSelectionLabel = value;
+    } else {
+      throw new Error('Cannot rewrite value after it has been set.');
+    }
+  }
+  get clearSelectionLabel() {
+    return this._clearSelectionLabel;
+  }
 
   constructor(private languageGuardService: LanguageGuardService) {
   }
